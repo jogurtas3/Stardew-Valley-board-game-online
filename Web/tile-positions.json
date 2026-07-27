@@ -1,0 +1,23 @@
+{
+  "coordinateSystem": "Percent of the 2800x2800 board image; left/top indicate tile center",
+  "tileWidthPercent": 5.8,
+  "forageableTiles": [
+    { "id": 1, "left": 51.71, "top": 33.5 },
+    { "id": 2, "left": 56.64, "top": 44.07 },
+    { "id": 3, "left": 81.36, "top": 46.07 },
+    { "id": 4, "left": 45.86, "top": 53.14 },
+    { "id": 5, "left": 34.29, "top": 56.07 },
+    { "id": 6, "left": 16.5, "top": 63.14 },
+    { "id": 7, "left": 56.93, "top": 66.93 },
+    { "id": 8, "left": 70.29, "top": 66.93 },
+    { "id": 9, "left": 78.07, "top": 72.86 },
+    { "id": 10, "left": 31.36, "top": 75.79 },
+    { "id": 11, "left": 70.71, "top": 49.64 }
+  ],
+  "woodTreeTiles": [
+    { "id": 1, "left": 21.75, "top": 54.65 },
+    { "id": 2, "left": 45.31, "top": 59.38, "note": "Rightmost tree tile, refined from four supplied boundary lines" },
+    { "id": 3, "left": 29.01, "top": 63.3 },
+    { "id": 4, "left": 24.64, "top": 75.8 }
+  ]
+}

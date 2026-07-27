@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="lt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stardew kauliuko ridenimas</title>
+  <link rel="stylesheet" href="dice-roller.css">
+</head>
+<body>
+  <!-- Šį .stardew-dice bloką galima perkelti į kitą svetainę. -->
+  <main class="stardew-dice" data-stardew-dice>
+    <section class="stardew-dice__card" aria-labelledby="dice-title">
+      <div class="stardew-dice__heading">
+        <h1 id="dice-title">Ridenk kauliuką</h1>
+      </div>
+
+      <div class="stardew-dice__table">
+        <div class="stardew-dice__particles" aria-hidden="true"></div>
+        <div class="stardew-dice__scene" aria-hidden="true">
+          <div class="stardew-dice__cube">
+            <!-- Aštuoni balti trikampiai sudaro nupjautus kubo kampus. -->
+            <i class="stardew-dice__corner" data-corner="-1,-1,-1"></i>
+            <i class="stardew-dice__corner" data-corner="-1,-1,1"></i>
+            <i class="stardew-dice__corner" data-corner="-1,1,-1"></i>
+            <i class="stardew-dice__corner" data-corner="-1,1,1"></i>
+            <i class="stardew-dice__corner" data-corner="1,-1,-1"></i>
+            <i class="stardew-dice__corner" data-corner="1,-1,1"></i>
+            <i class="stardew-dice__corner" data-corner="1,1,-1"></i>
+            <i class="stardew-dice__corner" data-corner="1,1,1"></i>
+
+            <div class="stardew-dice__face stardew-dice__face--front"><img src="assets/stardrop-side.png" alt=""></div>
+            <div class="stardew-dice__face stardew-dice__face--back"><img src="assets/heart-side-3.png" alt=""></div>
+            <div class="stardew-dice__face stardew-dice__face--right"><img src="assets/heart-side-3.png" alt=""></div>
+            <div class="stardew-dice__face stardew-dice__face--left"><img src="assets/heart-side-3.png" alt=""></div>
+            <div class="stardew-dice__face stardew-dice__face--top"><img src="assets/junimo-side-1.png" alt=""></div>
+            <div class="stardew-dice__face stardew-dice__face--bottom"><img src="assets/junimo-side-1.png" alt=""></div>
+          </div>
+          <div class="stardew-dice__shadow"></div>
+        </div>
+      </div>
+
+      <p class="stardew-dice__result" aria-live="polite">Paspausk mygtuką ir išridenk simbolį</p>
+      <button class="stardew-dice__button" type="button">Ridenti</button>
+    </section>
+  </main>
+
+  <script src="dice-roller.js"></script>
+</body>
+</html>

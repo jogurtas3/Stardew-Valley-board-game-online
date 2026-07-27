@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Play Stardew Valley: The Board Game in your browser">
+  <title>Stardew Valley Board Game</title>
+  <link rel="stylesheet" href="dice-roller.css?v=6">
+  <link rel="stylesheet" href="styles.css?v=96">
+  <script src="dice-roller.js?v=5" defer></script>
+  <script src="app.js?v=70" defer></script>
+</head>
+<body>
+  <main class="page-shell">
+    <section id="welcome-picker" class="picker welcome-picker" aria-labelledby="welcome-picker-title">
+      <h1 id="welcome-picker-title">Stardew Valley Board Game</h1>
+      <p class="instruction">What would you like to do?</p>
+      <div class="welcome-actions">
+        <button id="new-game-button" class="action-button continue-button" type="button">Start New Game</button>
+        <button id="view-board-button" class="action-button view-board-button" type="button">View Board with Animation</button>
+        <button id="view-board-static-button" class="action-button view-board-static-button" type="button">View Board without Animation</button>
+      </div>
+    </section>
+
+    <section id="deck-size-picker" class="picker deck-size-picker" aria-labelledby="deck-size-picker-title" hidden>
+      <button id="deck-stage-back" class="stage-back-button" type="button">Back</button>
+      <h1 id="deck-size-picker-title">Choose the number of Season Cards</h1>
+      <p class="instruction">Enter a number from 16 to 84.</p>
+
+      <form id="deck-size-form" class="deck-size-form" novalidate>
+        <label for="deck-size-input">Number of cards</label>
+        <input id="deck-size-input" name="deck-size" type="number" min="16" max="84" step="1" value="16" inputmode="numeric" required>
+        <p id="deck-size-error" class="deck-size-error" aria-live="polite"></p>
+        <button class="action-button continue-button deck-size-submit" type="submit">Continue</button>
+      </form>
+    </section>
+
+    <section id="token-picker" class="picker token-picker" aria-labelledby="token-picker-title" hidden>
+      <button id="token-stage-back" class="stage-back-button" type="button">Back</button>
+      <h1 id="token-picker-title">Choose your token</h1>
+      <p class="instruction">Select your starting player token to continue.</p>
+
+      <div class="token-options">
+        <button class="token-option" type="button" data-token="cat" aria-label="Choose Cat token">
+          <img src="assets/cat-token.jpg" alt="Cat starting player token">
+          <span>Cat</span>
+        </button>
+        <button class="token-option" type="button" data-token="dog" aria-label="Choose Dog token">
+          <img src="assets/dog-token.jpg" alt="Dog starting player token">
+          <span>Dog</span>
+        </button>
+      </div>
+    </section>
+
+    <section id="profession-picker" class="picker" aria-labelledby="picker-title" hidden>
+      <button id="profession-stage-back" class="stage-back-button" type="button">Back</button>
+      <h1 id="picker-title">Choose your profession</h1>
+      <p id="profession-instruction" class="instruction">Select your player mat to continue:</p>
+
+      <div class="profession-carousel">
+        <button id="previous-profession" class="carousel-arrow" type="button" aria-label="Previous profession">
+          <span class="triangle triangle-left" aria-hidden="true"></span>
+        </button>
+
+        <div class="profession-preview-wrap">
+          <button id="profession-option" class="mat-option" type="button" aria-label="Choose Fishing">
+            <img id="profession-preview" src="assets/fishing.jpg" alt="Fishing player mat">
+          </button>
+          <img id="profession-pawn" class="profession-pawn" src="assets/fishing-pawn.svg?v=20" alt="Fishing player pawn">
+        </div>
+
+        <button id="next-profession" class="carousel-arrow" type="button" aria-label="Next profession">
+          <span class="triangle triangle-right" aria-hidden="true"></span>
+        </button>
+      </div>
+      <p id="profession-name" class="profession-name">Fishing</p>
+      <div id="profession-actions" class="selection-actions profession-selection-actions" hidden>
+        <button id="back-button" class="action-button back-button" type="button">Back to selection</button>
+        <button id="continue-button" class="action-button continue-button" type="button">Continue</button>
+      </div>
+    </section>
+
+    <section id="game-board" class="game-board" aria-label="Stardew Valley game board" hidden>
+      <button id="board-stage-back" class="stage-back-button board-stage-back" type="button">Back</button>
+      <div class="board-frame">
+        <div id="board-canvas" class="board-canvas">
+          <div id="board-surface" class="board-surface">
+            <img class="board-image" src="assets/game-board.jpg?v=3" alt="Stardew Valley game board" draggable="false">
+            <div class="board-lighting board-lighting-top-left" aria-hidden="true"></div>
+            <div class="board-lighting board-lighting-bottom-right" aria-hidden="true"></div>
+
+            <svg id="saved-path-highlights" class="saved-path-highlights" viewBox="0 0 100 100" aria-hidden="true">
+              <path class="saved-path-area" data-figure-id="1" d="M 45.76 40.25 L 45.80 40.54 L 64.65 35.69 L 64.76 35.80 L 68.19 35.73 L 68.12 35.66 L 68.16 36.45 L 68.12 36.45 L 45.98 41.99 L 45.80 42.17 Z"></path>
+              <path class="saved-path-area" data-figure-id="2" d="M 19.49 68.14 L 34.22 44.45 L 34.22 44.48 L 34.58 44.45 L 34.72 44.45 L 34.54 47.81 L 34.54 47.78 L 21.74 67.35 L 21.77 67.31 L 19.42 68.32 Z"></path>
+              <path class="saved-path-area" data-figure-id="3" d="M 43.75 46.91 L 43.79 46.80 L 56.78 51.39 L 56.78 51.47 L 56.89 52.84 L 56.92 52.91 L 43.79 48.32 L 43.86 48.39 Z"></path>
+              <path class="saved-path-area" data-figure-id="4" d="M 68.28 39.42 L 61.81 47.56 L 61.91 47.59 L 62.89 48.43 L 62.89 48.53 L 70.34 39.31 L 70.42 39.31 L 68.39 39.35 Z"></path>
+              <path class="saved-path-area" data-figure-id="5" d="M 71.21 39.49 L 79.89 55.08 L 79.68 54.83 L 81.34 54.90 L 81.59 55.01 L 73.02 39.45 L 73.06 39.49 L 71.21 39.42 Z"></path>
+              <path class="saved-path-area" data-figure-id="6" d="M 59.71 54.50 L 78.16 58.38 L 78.19 58.34 L 78.19 59.13 L 78.16 58.95 L 82.97 59.21 L 83.08 59.17 L 83.08 60.84 L 82.93 60.91 L 59.31 56.13 L 59.42 56.02 L 59.71 54.65 Z"></path>
+              <path class="saved-path-area" data-figure-id="7" d="M 70.33 73.79 L 82.81 58.95 L 82.92 58.95 L 82.99 60.94 L 83.03 60.84 L 72.82 73.39 L 72.97 73.14 L 72.25 72.59 L 72.10 72.70 L 70.36 73.82 Z"></path>
+              <path class="saved-path-area" data-figure-id="8" d="M 60.81 61.96 L 65.88 73.82 L 65.95 73.86 L 67.76 73.86 L 67.58 73.86 L 62.48 61.92 L 62.73 61.92 L 60.92 61.92 Z"></path>
+              <path class="saved-path-area" data-figure-id="9" d="M 42.94 68.22 L 54.30 61.09 L 54.41 61.05 L 54.34 61.85 L 54.16 61.78 L 56.11 61.78 L 56.11 61.70 L 42.11 70.78 L 42.18 70.71 L 42.22 69.81 L 42.18 69.73 L 43.45 68.97 L 43.38 69.01 L 43.09 68.00 Z"></path>
+              <path class="saved-path-area" data-figure-id="10" d="M 37.15 48.53 L 36.94 68.69 L 36.94 68.76 L 38.67 68.72 L 38.46 68.61 L 38.64 48.46 L 38.89 48.53 L 37.12 48.53 Z"></path>
+              <path class="saved-path-area" data-figure-id="11" d="M 22.39 70.02 L 32.92 69.84 L 32.92 71.40 L 32.99 71.36 L 21.81 71.62 L 22.03 71.62 L 22.00 70.82 L 22.00 70.86 L 23.08 70.86 L 22.54 69.88 Z"></path>
+            </svg>
+
+            <svg id="path-drawing-layer" class="path-drawing-layer" viewBox="0 0 100 100" aria-label="Path drawing layer">
+              <g id="path-drawing-lines"></g>
+            </svg>
+
+            <div id="board-pawns" class="board-pawns" aria-label="Player pawns" hidden></div>
+
+            <!-- To change the animation, set data-card-count to any number from 16 to 84. -->
+            <button id="season-deck" class="season-deck" data-card-count="16" type="button" aria-label="Draw a Spring season card"></button>
+            <div id="season-discard-pile" class="season-discard-pile" aria-label="Face-up discarded Season Cards"></div>
+
+            <img class="map-tile forageable-tile" style="--left: 51.71%; --top: 33.5%;" src="assets/spring-forageable-back.png" alt="Facedown Spring forageable tile" draggable="false">
+            <img class="map-tile forageable-tile" style="--left: 56.64%; --top: 44.07%;" src="assets/spring-forageable-back.png" alt="Facedown Spring forageable tile" draggable="false">
+            <img class="map-tile forageable-tile" style="--left: 81.36%; --top: 46.07%;" src="assets/spring-forageable-back.png" alt="Facedown Spring forageable tile" draggable="false">
+            <img class="map-tile forageable-tile" style="--left: 45.86%; --top: 53.14%;" src="assets/spring-forageable-back.png" alt="Facedown Spring forageable tile" draggable="false">
+            <img class="map-tile forageable-tile" style="--left: 34.29%; --top: 56.07%;" src="assets/spring-forageable-back.png" alt="Facedown Spring forageable tile" draggable="false">
+            <img class="map-tile forageable-tile" style="--left: 16.5%; --top: 63.14%;" src="assets/spring-forageable-back.png" alt="Facedown Spring forageable tile" draggable="false">
+            <img class="map-tile forageable-tile" style="--left: 56.93%; --top: 66.93%;" src="assets/spring-forageable-back.png" alt="Facedown Spring forageable tile" draggable="false">
+            <img class="map-tile forageable-tile" style="--left: 70.29%; --top: 66.93%;" src="assets/spring-forageable-back.png" alt="Facedown Spring forageable tile" draggable="false">
+            <img class="map-tile forageable-tile" style="--left: 78.07%; --top: 72.86%;" src="assets/spring-forageable-back.png" alt="Facedown Spring forageable tile" draggable="false">
+            <img class="map-tile forageable-tile" style="--left: 31.36%; --top: 75.79%;" src="assets/spring-forageable-back.png" alt="Facedown Spring forageable tile" draggable="false">
+            <img class="map-tile forageable-tile" style="--left: 70.71%; --top: 49.64%;" src="assets/spring-forageable-back.png" alt="Facedown Spring forageable tile" draggable="false">
+
+            <img class="map-tile tree-tile" style="--left: 21.75%; --top: 54.65%;" src="assets/spring-tree-tile.png" alt="Spring tree tile" draggable="false">
+            <img class="map-tile tree-tile" style="--left: 45.31%; --top: 59.38%;" src="assets/spring-tree-tile.png" alt="Spring tree tile" draggable="false">
+            <img class="map-tile tree-tile" style="--left: 29.01%; --top: 63.3%;" src="assets/spring-tree-tile.png" alt="Spring tree tile" draggable="false">
+            <img class="map-tile tree-tile" style="--left: 24.64%; --top: 75.8%;" src="assets/spring-tree-tile.png" alt="Spring tree tile" draggable="false">
+
+            <button class="action-hotspot" style="--left: 36.25%; --top: 39.93%; --width: 9.46%; --height: 4.1%;" type="button" aria-label="Collect from Animals"></button>
+            <button class="action-hotspot" style="--left: 34.61%; --top: 44.36%; --width: 9.25%; --height: 4.1%;" type="button" aria-label="Water the Crops"></button>
+            <button class="action-hotspot" style="--left: 68.39%; --top: 28.64%; --width: 9.11%; --height: 4.11%;" type="button" aria-label="Explore the Mine"></button>
+            <button class="action-hotspot" style="--left: 59.68%; --top: 31.79%; --width: 9.36%; --height: 3.9%;" type="button" aria-label="Buy Buildings"></button>
+            <button class="action-hotspot" style="--left: 68.14%; --top: 35.36%; --width: 9.14%; --height: 4.04%;" type="button" aria-label="Lake Fishing"></button>
+            <button class="action-hotspot" style="--left: 12.79%; --top: 68.54%; --width: 9.11%; --height: 4%;" type="button" aria-label="River Fishing"></button>
+            <button class="action-hotspot" style="--left: 32.86%; --top: 68.57%; --width: 9.36%; --height: 4.29%;" type="button" aria-label="Buy Animals"></button>
+            <button class="action-hotspot" style="--left: 56.6%; --top: 48.6%; --width: 9.8%; --height: 4.3%;" type="button" aria-label="Community Center"></button>
+            <button class="action-hotspot" style="--left: 50.1%; --top: 53.14%; --width: 9.4%; --height: 4%;" type="button" aria-label="Buy Seeds and Sell Things"></button>
+            <button class="action-hotspot" style="--left: 54.43%; --top: 57.61%; --width: 9.1%; --height: 4.04%;" type="button" aria-label="Make a Friend"></button>
+            <button class="action-hotspot" style="--left: 77.96%; --top: 54.96%; --width: 9.21%; --height: 4.04%;" type="button" aria-label="Open Geodes"></button>
+            <button class="action-hotspot" style="--left: 83%; --top: 58.71%; --width: 9.07%; --height: 4.04%;" type="button" aria-label="Donate to Museum"></button>
+            <button class="action-hotspot" style="--left: 63.29%; --top: 73.86%; --width: 9.18%; --height: 4.18%;" type="button" aria-label="Ocean Fishing"></button>
+          </div>
+        </div>
+      </div>
+
+      <aside class="path-drawing-tools" aria-label="Path drawing tools">
+        <h2>Draw highlight lines</h2>
+        <p>Draw directly over the board, then copy the coordinates.</p>
+        <label class="path-drawing-type" for="path-drawing-type">
+          <span>Line type</span>
+          <select id="path-drawing-type">
+            <option value="straight">Straight line</option>
+            <option value="freehand">Freehand line</option>
+          </select>
+        </label>
+        <div class="path-drawing-actions">
+          <button id="path-draw-toggle" type="button" aria-pressed="false">Draw lines</button>
+          <button id="path-undo" type="button">Undo</button>
+          <button id="path-clear" type="button">Clear</button>
+        </div>
+        <textarea id="path-coordinates" rows="5" readonly aria-label="Drawn line coordinates" placeholder="The coordinates will appear here"></textarea>
+        <button id="path-copy" class="path-copy-button" type="button">Copy coordinates</button>
+        <p id="path-tool-status" class="path-tool-status" aria-live="polite"></p>
+      </aside>
+
+      <aside class="board-dice stardew-dice" data-stardew-dice data-dice-count="3" aria-label="Stardew dice roller">
+        <section class="stardew-dice__card" aria-labelledby="board-dice-title">
+          <div class="stardew-dice__heading">
+            <h2 id="board-dice-title">Stardew Dice</h2>
+          </div>
+          <div class="stardew-dice__count" role="group" aria-label="Number of Stardew Dice">
+            <button type="button" data-dice-count="1">1</button>
+            <button type="button" data-dice-count="2">2</button>
+            <button type="button" data-dice-count="3" class="is-selected">3</button>
+          </div>
+          <p class="stardew-dice__count-hint" aria-live="polite">Use for Fishing.</p>
+          <div class="stardew-dice__table">
+            <div class="stardew-dice__particles" aria-hidden="true"></div>
+            <div class="stardew-dice__dice-row">
+              <div class="stardew-dice__scene" aria-hidden="true">
+              <div class="stardew-dice__cube">
+                  <i class="stardew-dice__corner" data-corner="-1,-1,-1"></i>
+                  <i class="stardew-dice__corner" data-corner="-1,-1,1"></i>
+                  <i class="stardew-dice__corner" data-corner="-1,1,-1"></i>
+                  <i class="stardew-dice__corner" data-corner="-1,1,1"></i>
+                  <i class="stardew-dice__corner" data-corner="1,-1,-1"></i>
+                  <i class="stardew-dice__corner" data-corner="1,-1,1"></i>
+                  <i class="stardew-dice__corner" data-corner="1,1,-1"></i>
+                  <i class="stardew-dice__corner" data-corner="1,1,1"></i>
+                  <div class="stardew-dice__face stardew-dice__face--front"><img src="assets/dice-stardrop.png" alt=""></div>
+                  <div class="stardew-dice__face stardew-dice__face--back"><img src="assets/dice-heart.png" alt=""></div>
+                  <div class="stardew-dice__face stardew-dice__face--right"><img src="assets/dice-heart.png" alt=""></div>
+                  <div class="stardew-dice__face stardew-dice__face--left"><img src="assets/dice-heart.png" alt=""></div>
+                  <div class="stardew-dice__face stardew-dice__face--top"><img src="assets/dice-junimo.png" alt=""></div>
+                <div class="stardew-dice__face stardew-dice__face--bottom"><img src="assets/dice-junimo.png" alt=""></div>
+              </div>
+                <div class="stardew-dice__shadow"></div>
+              </div>
+            </div>
+          </div>
+          <p class="stardew-dice__result" aria-live="polite">Ready to roll 3 dice</p>
+          <button class="stardew-dice__button" type="button">Roll Stardew Dice</button>
+        </section>
+      </aside>
+    </section>
+  </main>
+</body>
+</html>
