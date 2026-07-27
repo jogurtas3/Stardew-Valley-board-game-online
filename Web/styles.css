@@ -108,6 +108,10 @@ h1 {
   gap: 16px;
 }
 
+.welcome-screen.is-loading {
+  visibility: hidden;
+}
+
 .welcome-header {
   display: block;
   width: min(1000px, 100%);
@@ -218,22 +222,13 @@ h1 {
   font: 900 1rem/1 system-ui, sans-serif;
 }
 
-.deck-size-stepper-buttons button:hover,
-.deck-size-stepper-buttons button:focus-visible {
-  filter: brightness(1.14);
-  outline: 2px solid #fff3b0;
-  outline-offset: 1px;
-}
-
 .deck-size-stepper-buttons button:active {
   box-shadow: none;
   transform: translateY(2px);
 }
 
 .deck-size-form input:focus {
-  border-color: #e2a938;
-  outline: 4px solid #fff3b0;
-  outline-offset: 3px;
+  outline: none;
 }
 
 .deck-size-form input[aria-invalid="true"] {
@@ -725,7 +720,7 @@ h1 {
   z-index: 12;
   top: 50%;
   left: 24px;
-  width: clamp(270px, 20vw, 330px);
+  width: clamp(320px, 24vw, 400px);
   color: #402716;
   transform: translateY(-50%);
   transition: opacity 150ms ease, visibility 150ms ease;
@@ -767,7 +762,11 @@ h1 {
   text-shadow: 0 2px #fff1c8;
 }
 
-.board-player-mat > img {
+.board-player-mat-surface {
+  position: relative;
+}
+
+.board-player-mat-surface > img {
   position: relative;
   z-index: 2;
   display: block;
@@ -777,6 +776,57 @@ h1 {
   border-radius: 9px;
   box-shadow: inset 0 0 0 1px #cf9656;
   filter: brightness(1.28) saturate(1.08) contrast(1.02);
+}
+
+.player-tool-deck {
+  position: absolute;
+  z-index: 4;
+  top: 18.7%;
+  left: 22.17%;
+  width: 20%;
+  aspect-ratio: 2 / 3;
+  cursor: pointer;
+}
+
+.player-tool-deck:focus-visible {
+  outline: 3px solid #fff3a0;
+  outline-offset: 3px;
+}
+
+.player-tool-deck img {
+  position: absolute;
+  inset: 0;
+  z-index: calc(10 + var(--tool-card-index));
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: brightness(1.28) saturate(1.04) contrast(1.02);
+  border: 1px solid #754423;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgb(44 24 12 / 48%);
+  transform: rotate(0deg);
+  transform-origin: center;
+}
+
+.player-tool-deck img.is-removing {
+  pointer-events: none;
+  animation: remove-player-tool-card 650ms cubic-bezier(.2, .75, .28, 1) forwards;
+}
+
+@keyframes remove-player-tool-card {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  45% {
+    opacity: 1;
+    transform: translate(20%, -8%) rotate(3deg) scale(1.04);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(115%, -22%) rotate(12deg) scale(.92);
+  }
 }
 
 .owned-cards {
@@ -957,13 +1007,31 @@ h1 {
   text-shadow: 0 2px #fff1c8;
 }
 
+.board-dice .stardew-dice__type,
 .board-dice .stardew-dice__count {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   gap: 5px;
   margin-bottom: 4px;
 }
 
+.board-dice .stardew-dice__type {
+  grid-template-columns: repeat(2, 1fr);
+  margin-bottom: 6px;
+}
+
+.board-dice .stardew-dice__count {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.board-dice .stardew-dice__count[hidden] {
+  display: none;
+}
+
+.board-dice[data-dice-type="animal"] .stardew-dice__count button[data-dice-count="3"] {
+  grid-column: 2;
+}
+
+.board-dice .stardew-dice__type button,
 .board-dice .stardew-dice__count button {
   padding: 5px 3px;
   cursor: pointer;
@@ -974,6 +1042,7 @@ h1 {
   font: 800 0.78rem/1 system-ui, sans-serif;
 }
 
+.board-dice .stardew-dice__type button.is-selected,
 .board-dice .stardew-dice__count button.is-selected {
   color: #fff9df;
   background: #347b35;
@@ -981,19 +1050,25 @@ h1 {
   box-shadow: inset 0 0 0 1px #235625;
 }
 
+.board-dice .stardew-dice__type button:focus-visible,
 .board-dice .stardew-dice__count button:focus-visible {
   outline: 3px solid #f2c94c;
   outline-offset: 1px;
 }
 
 .board-dice .stardew-dice__count-hint {
-  margin: 0 0 7px;
+  display: grid;
+  min-height: 2.7em;
+  margin: 4px 0 0;
+  padding: 2px 8px;
+  place-items: center;
   color: #795334;
-  font: 700 0.62rem/1.2 system-ui, sans-serif;
+  font: 700 0.9rem/1.35 system-ui, sans-serif;
 }
 
 .board-dice .stardew-dice__table {
-  height: 158px;
+  height: 190px;
+  margin-top: 14px;
   border-width: 3px;
   border-radius: 12px;
   background:
@@ -1025,19 +1100,19 @@ h1 {
 }
 
 .board-dice[data-dice-count="1"] {
-  --die-size: 88px;
+  --die-size: 108px;
   --dice-columns: 1;
   --dice-table-lines: linear-gradient(90deg, transparent, transparent);
 }
 
 .board-dice[data-dice-count="2"] {
-  --die-size: 72px;
+  --die-size: 88px;
   --dice-columns: 2;
   --dice-table-lines: linear-gradient(90deg, transparent 0 49.5%, rgb(66 29 10 / 25%) 49.5% 50.5%, transparent 50.5%);
 }
 
 .board-dice[data-dice-count="3"] {
-  --die-size: 56px;
+  --die-size: 70px;
   --dice-columns: 3;
   --dice-table-lines: linear-gradient(90deg, transparent 0 32.8%, rgb(66 29 10 / 25%) 32.8% 33.8%, transparent 33.8% 66.2%, rgb(66 29 10 / 25%) 66.2% 67.2%, transparent 67.2%);
 }
@@ -1046,6 +1121,14 @@ h1 {
   min-height: 1.4em;
   margin: 10px 0 9px;
   font-size: 0.86rem;
+}
+
+.board-dice .stardew-dice__result:empty {
+  display: none;
+}
+
+.board-dice .stardew-dice__table + .stardew-dice__result:empty + .stardew-dice__button {
+  margin-top: 12px;
 }
 
 .board-dice .stardew-dice__button {
@@ -1167,19 +1250,24 @@ h1 {
 .saved-path-area.is-reachable:hover,
 .saved-path-area.is-awaiting-tile {
   fill: rgb(255 255 255 / 82%);
-  stroke: #fff;
-  filter:
-    drop-shadow(0 0 0.25px #fff)
-    drop-shadow(0 0 0.7px rgb(255 255 255 / 78%));
+  stroke: transparent;
+  filter: none;
 }
 
 .saved-path-area.is-awaiting-tile {
   cursor: pointer;
 }
 
+.saved-path-area[data-figure-id="11"].is-reachable:hover,
+.saved-path-area[data-figure-id="11"].is-awaiting-tile,
+.saved-path-area[data-figure-id="11"]:not(.is-reachable):not(.is-awaiting-tile):hover {
+  fill: rgb(255 255 255 / 100%);
+}
+
 .saved-path-area:not(.is-reachable):not(.is-awaiting-tile):hover {
-  fill: rgb(180 50 42 / 24%);
-  stroke: rgb(255 170 145 / 70%);
+  fill: rgb(255 255 255 / 82%);
+  stroke: transparent;
+  filter: none;
 }
 
 .path-drawing-layer {

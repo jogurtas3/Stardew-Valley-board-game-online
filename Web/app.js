@@ -5,6 +5,12 @@ const professions = [
     image: "assets/fishing.jpg",
     alt: "Fishing player mat",
     pawn: "assets/fishing-pawn.svg?v=20",
+    tools: [
+      ["Iridium Rod", "assets/iridium-rod.png"],
+      ["Fiberglass Rod", "assets/fiberglass-rod.png"],
+      ["Bamboo Rod", "assets/bamboo-rod.png"],
+      ["Training Rod", "assets/training-rod.png"],
+    ],
   },
   {
     id: "foraging",
@@ -12,6 +18,13 @@ const professions = [
     image: "assets/foraging.jpg",
     alt: "Foraging player mat",
     pawn: "assets/foraging-pawn.svg?v=20",
+    tools: [
+      ["Iridium Hoe", "assets/iridium-hoe.png"],
+      ["Gold Hoe", "assets/gold-hoe.png"],
+      ["Iron Hoe", "assets/iron-hoe.png"],
+      ["Copper Hoe", "assets/copper-hoe.png"],
+      ["Starting Hoe", "assets/hoe.png"],
+    ],
   },
   {
     id: "mining",
@@ -19,6 +32,13 @@ const professions = [
     image: "assets/mining.jpg",
     alt: "Mining player mat",
     pawn: "assets/mining-pawn.svg?v=20",
+    tools: [
+      ["Iridium Pickaxe", "assets/iridium-pickaxe.png"],
+      ["Gold Pickaxe", "assets/gold-pickaxe.png"],
+      ["Iron Pickaxe", "assets/iron-pickaxe.png"],
+      ["Copper Pickaxe", "assets/copper-pickaxe.png"],
+      ["Starting Pickaxe", "assets/pickaxe.png"],
+    ],
   },
   {
     id: "farming",
@@ -26,10 +46,18 @@ const professions = [
     image: "assets/farming.jpg",
     alt: "Farming player mat",
     pawn: "assets/farming-pawn.svg?v=20",
+    tools: [
+      ["Iridium Watering Can", "assets/iridium-watering-can.png"],
+      ["Gold Watering Can", "assets/gold-watering-can.png"],
+      ["Iron Watering Can", "assets/iron-watering-can.png"],
+      ["Copper Watering Can", "assets/copper-watering-can.png"],
+      ["Starting Watering Can", "assets/watering-can.png"],
+    ],
   },
 ];
 
 const welcomePicker = document.querySelector("#welcome-screen");
+const welcomeHeader = document.querySelector(".welcome-header");
 const newGameButton = document.querySelector("#new-game-button");
 const viewBoardButton = document.querySelector("#view-board-button");
 const viewBoardStaticButton = document.querySelector("#view-board-static-button");
@@ -54,12 +82,24 @@ const professionOption = document.querySelector("#profession-option");
 const professionPreview = document.querySelector("#profession-preview");
 const professionPawn = document.querySelector("#profession-pawn");
 const boardPlayerMatImage = document.querySelector("#board-player-mat-image");
+const playerToolDeck = document.querySelector("#player-tool-deck");
 const ownedCardInput = document.querySelector("#owned-card-input");
 const ownedCardsList = document.querySelector("#owned-cards-list");
 const ownedCardsEmpty = document.querySelector("#owned-cards-empty");
 const ownedCardsStatus = document.querySelector("#owned-cards-status");
 const professionInstruction = document.querySelector("#profession-instruction");
 const professionName = document.querySelector("#profession-name");
+
+function showWelcomeScreen() {
+  welcomePicker.classList.remove("is-loading");
+}
+
+if (welcomeHeader.complete) {
+  showWelcomeScreen();
+} else {
+  welcomeHeader.addEventListener("load", showWelcomeScreen, { once: true });
+  welcomeHeader.addEventListener("error", showWelcomeScreen, { once: true });
+}
 const previousButton = document.querySelector("#previous-profession");
 const nextButton = document.querySelector("#next-profession");
 const boardFrame = document.querySelector(".board-frame");
@@ -71,6 +111,8 @@ const seasonDiscardPile = document.querySelector("#season-discard-pile");
 const savedPathHighlights = document.querySelector("#saved-path-highlights");
 const pathDrawingLayer = document.querySelector("#path-drawing-layer");
 const pathDrawingLines = document.querySelector("#path-drawing-lines");
+const playerMatDrawingLayer = document.querySelector("#player-mat-drawing-layer");
+const playerMatDrawingLines = document.querySelector("#player-mat-drawing-lines");
 const pathDrawToggle = document.querySelector("#path-draw-toggle");
 const pathDrawingType = document.querySelector("#path-drawing-type");
 const pathUndoButton = document.querySelector("#path-undo");
@@ -363,7 +405,7 @@ async function renderSavedPathHighlights() {
     const fragment = document.createDocumentFragment();
 
     data.figures.forEach((figure) => {
-      if (!figure.connectedShape) {
+      if (!figure.connectedShape || !boardRoutes[figure.id]) {
         return;
       }
 
@@ -381,6 +423,56 @@ async function renderSavedPathHighlights() {
   }
 }
 
+function renderPlayerToolDeck(profession) {
+  const fragment = document.createDocumentFragment();
+
+  profession.tools.forEach(([name, source], index) => {
+    const image = document.createElement("img");
+    image.src = source;
+    image.alt = name;
+    image.draggable = false;
+    image.style.setProperty("--tool-card-index", index);
+    fragment.append(image);
+  });
+
+  playerToolDeck.replaceChildren(fragment);
+  playerToolDeck.tabIndex = 0;
+  playerToolDeck.setAttribute("role", "button");
+  playerToolDeck.setAttribute("aria-label", `${profession.name} tool cards; starting tool on top. Activate to remove the top card.`);
+}
+
+function removeTopPlayerToolCard() {
+  const topCard = playerToolDeck.lastElementChild;
+  if (!topCard || topCard.classList.contains("is-removing")) {
+    return;
+  }
+
+  topCard.classList.add("is-removing");
+  topCard.addEventListener("animationend", () => {
+    topCard.remove();
+    const nextCard = playerToolDeck.lastElementChild;
+    playerToolDeck.setAttribute(
+      "aria-label",
+      nextCard ? `${nextCard.alt} is face up. Activate to remove it.` : "Tool card pile is empty.",
+    );
+  }, { once: true });
+}
+
+playerToolDeck.addEventListener("click", (event) => {
+  event.stopPropagation();
+  removeTopPlayerToolCard();
+});
+
+playerToolDeck.addEventListener("keydown", (event) => {
+  if (event.key !== "Enter" && event.key !== " ") {
+    return;
+  }
+
+  event.preventDefault();
+  event.stopPropagation();
+  removeTopPlayerToolCard();
+});
+
 function renderProfession() {
   const profession = professions[currentProfessionIndex];
 
@@ -390,6 +482,7 @@ function renderProfession() {
   professionPawn.alt = `${profession.name} player pawn`;
   boardPlayerMatImage.src = profession.image;
   boardPlayerMatImage.alt = profession.alt;
+  renderPlayerToolDeck(profession);
   renderOwnedCards();
   professionInstruction.textContent = "Select your player mat to continue:";
   professionName.textContent = profession.name;
@@ -1061,6 +1154,7 @@ function setPathDrawingMode(enabled) {
   isDrawingGuideLine = false;
   activeGuideStroke = null;
   pathDrawingLayer.classList.toggle("is-active", enabled);
+  playerMatDrawingLayer.classList.toggle("is-active", enabled);
   boardCanvas.classList.toggle("is-path-drawing", enabled);
   pathDrawToggle.setAttribute("aria-pressed", String(enabled));
   pathDrawToggle.textContent = enabled ? "Stop drawing" : "Draw lines";
@@ -1071,8 +1165,8 @@ function setPathDrawingMode(enabled) {
     : "";
 }
 
-function eventToBoardPoint(event) {
-  const bounds = pathDrawingLayer.getBoundingClientRect();
+function eventToDrawingPoint(event, layer) {
+  const bounds = layer.getBoundingClientRect();
   return [
     Math.max(0, Math.min(100, (event.clientX - bounds.left) / bounds.width * 100)),
     Math.max(0, Math.min(100, (event.clientY - bounds.top) / bounds.height * 100)),
@@ -1080,12 +1174,15 @@ function eventToBoardPoint(event) {
 }
 
 function formatGuideCoordinates() {
+  const areaCounts = { board: 0, playerMat: 0 };
   pathCoordinates.value = guideStrokes
-    .map(({ points }, index) => {
+    .map(({ points, area }) => {
+      areaCounts[area] += 1;
       const commands = points.map(([x, y], pointIndex) =>
         `${pointIndex === 0 ? "M" : "L"} ${x.toFixed(2)} ${y.toFixed(2)}`,
       );
-      return `Line ${index + 1}: ${commands.join(" ")}`;
+      const prefix = area === "playerMat" ? "Player Mat Line" : "Line";
+      return `${prefix} ${areaCounts[area]}: ${commands.join(" ")}`;
     })
     .join(" ");
 }
@@ -1106,84 +1203,74 @@ function updateGuideStroke(stroke) {
   );
 }
 
-pathDrawingLayer.addEventListener("pointerdown", (event) => {
-  if (!isPathDrawingMode || (event.pointerType === "mouse" && event.button !== 0)) {
-    return;
-  }
+function bindDrawingLayer(layer, lines, area) {
+  layer.addEventListener("pointerdown", (event) => {
+    if (!isPathDrawingMode || (event.pointerType === "mouse" && event.button !== 0)) return;
 
-  event.preventDefault();
-  event.stopPropagation();
-  const type = pathDrawingType.value;
-  const element = document.createElementNS(
-    "http://www.w3.org/2000/svg",
-    type === "straight" ? "line" : "polyline",
-  );
-  const firstPoint = eventToBoardPoint(event);
-  const stroke = {
-    element,
-    type,
-    points: type === "straight"
-      ? [firstPoint, firstPoint]
-      : [firstPoint],
+    event.preventDefault();
+    event.stopPropagation();
+    const type = pathDrawingType.value;
+    const element = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      type === "straight" ? "line" : "polyline",
+    );
+    const firstPoint = eventToDrawingPoint(event, layer);
+    const stroke = {
+      element,
+      layer,
+      area,
+      type,
+      points: type === "straight" ? [firstPoint, firstPoint] : [firstPoint],
+    };
+
+    element.classList.add("path-guide-line");
+    lines.append(element);
+    guideStrokes.push(stroke);
+    activeGuideStroke = stroke;
+    isDrawingGuideLine = true;
+    layer.setPointerCapture(event.pointerId);
+    updateGuideStroke(stroke);
+  });
+
+  layer.addEventListener("pointermove", (event) => {
+    if (!isDrawingGuideLine || !activeGuideStroke || activeGuideStroke.layer !== layer) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    const point = eventToDrawingPoint(event, layer);
+    if (activeGuideStroke.type === "straight") {
+      activeGuideStroke.points[1] = point;
+      updateGuideStroke(activeGuideStroke);
+      return;
+    }
+
+    const previous = activeGuideStroke.points.at(-1);
+    if (Math.hypot(point[0] - previous[0], point[1] - previous[1]) < 0.12) return;
+    activeGuideStroke.points.push(point);
+    updateGuideStroke(activeGuideStroke);
+  });
+
+  const finishGuideStroke = (event) => {
+    if (!isDrawingGuideLine || activeGuideStroke?.layer !== layer) return;
+    event.preventDefault();
+    event.stopPropagation();
+    isDrawingGuideLine = false;
+    activeGuideStroke = null;
+    if (layer.hasPointerCapture(event.pointerId)) layer.releasePointerCapture(event.pointerId);
+    formatGuideCoordinates();
+    pathToolStatus.textContent = "Line saved. Draw another line or copy the coordinates.";
   };
 
-  element.classList.add("path-guide-line");
-  pathDrawingLines.append(element);
-  guideStrokes.push(stroke);
-  activeGuideStroke = stroke;
-  isDrawingGuideLine = true;
-  pathDrawingLayer.setPointerCapture(event.pointerId);
-  updateGuideStroke(stroke);
-});
-
-pathDrawingLayer.addEventListener("pointermove", (event) => {
-  if (!isDrawingGuideLine || !activeGuideStroke) {
-    return;
-  }
-
-  event.preventDefault();
-  event.stopPropagation();
-  const point = eventToBoardPoint(event);
-
-  if (activeGuideStroke.type === "straight") {
-    activeGuideStroke.points[1] = point;
-    updateGuideStroke(activeGuideStroke);
-    return;
-  }
-
-  const previous = activeGuideStroke.points.at(-1);
-  const distance = Math.hypot(point[0] - previous[0], point[1] - previous[1]);
-
-  if (distance < 0.12) {
-    return;
-  }
-
-  activeGuideStroke.points.push(point);
-  updateGuideStroke(activeGuideStroke);
-});
-
-function finishGuideStroke(event) {
-  if (!isDrawingGuideLine) {
-    return;
-  }
-
-  event.preventDefault();
-  event.stopPropagation();
-  isDrawingGuideLine = false;
-  activeGuideStroke = null;
-  if (pathDrawingLayer.hasPointerCapture(event.pointerId)) {
-    pathDrawingLayer.releasePointerCapture(event.pointerId);
-  }
-  formatGuideCoordinates();
-  pathToolStatus.textContent = "Line saved. Draw another line or copy the coordinates.";
+  layer.addEventListener("pointerup", finishGuideStroke);
+  layer.addEventListener("pointercancel", finishGuideStroke);
+  layer.addEventListener("dblclick", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+  });
 }
 
-pathDrawingLayer.addEventListener("pointerup", finishGuideStroke);
-pathDrawingLayer.addEventListener("pointercancel", finishGuideStroke);
-pathDrawingLayer.addEventListener("dblclick", (event) => {
-  event.preventDefault();
-  event.stopPropagation();
-});
+bindDrawingLayer(pathDrawingLayer, pathDrawingLines, "board");
+bindDrawingLayer(playerMatDrawingLayer, playerMatDrawingLines, "playerMat");
 
 pathDrawToggle.addEventListener("click", () => {
   setPathDrawingMode(!isPathDrawingMode);
@@ -1205,6 +1292,7 @@ pathUndoButton.addEventListener("click", () => {
 pathClearButton.addEventListener("click", () => {
   guideStrokes.length = 0;
   pathDrawingLines.replaceChildren();
+  playerMatDrawingLines.replaceChildren();
   formatGuideCoordinates();
   pathToolStatus.textContent = "All lines cleared.";
 });

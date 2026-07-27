@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Play Stardew Valley: The Board Game in your browser">
   <title>Stardew Valley Board Game</title>
-  <link rel="stylesheet" href="dice-roller.css?v=6">
-  <link rel="stylesheet" href="styles.css?v=116">
-  <script src="dice-roller.js?v=5" defer></script>
-  <script src="app.js?v=86" defer></script>
+  <link rel="stylesheet" href="dice-roller.css?v=7">
+  <link rel="stylesheet" href="styles.css?v=124">
+  <script src="dice-roller.js?v=11" defer></script>
+  <script src="app.js?v=89" defer></script>
 </head>
 <body>
   <main class="page-shell">
-    <div id="welcome-screen" class="welcome-screen">
+    <div id="welcome-screen" class="welcome-screen is-loading">
       <img class="welcome-header" src="assets/site-header.png" alt="Stardew Valley: The Board Game" width="2000" height="560" fetchpriority="high">
       <section id="welcome-picker" class="picker welcome-picker" aria-labelledby="welcome-picker-title">
         <h1 id="welcome-picker-title" class="welcome-title">Welcome!</h1>
@@ -95,7 +95,7 @@
       <div class="board-frame">
         <div id="board-canvas" class="board-canvas">
           <div id="board-surface" class="board-surface">
-            <img class="board-image" src="assets/game-board.jpg?v=3" alt="Stardew Valley game board" draggable="false">
+            <img class="board-image" src="assets/game-board.jpg?v=5" alt="Stardew Valley game board" draggable="false">
             <div class="board-lighting board-lighting-top-left" aria-hidden="true"></div>
             <div class="board-lighting board-lighting-bottom-right" aria-hidden="true"></div>
 
@@ -159,7 +159,13 @@
 
       <aside class="board-player-mat" aria-labelledby="board-player-mat-title" tabindex="0">
         <h2 id="board-player-mat-title">Player Mat</h2>
-        <img id="board-player-mat-image" src="assets/fishing.jpg" alt="Fishing player mat" draggable="false">
+        <div class="board-player-mat-surface">
+          <img id="board-player-mat-image" src="assets/fishing.jpg" alt="Fishing player mat" draggable="false">
+          <div id="player-tool-deck" class="player-tool-deck" aria-label="Fishing tool cards"></div>
+          <svg id="player-mat-drawing-layer" class="path-drawing-layer player-mat-drawing-layer" viewBox="0 0 100 100" preserveAspectRatio="none" aria-label="Player mat drawing layer">
+            <g id="player-mat-drawing-lines"></g>
+          </svg>
+        </div>
         <section class="owned-cards" aria-labelledby="owned-cards-title">
           <div class="owned-cards-heading">
             <h3 id="owned-cards-title">Owned Cards</h3>
@@ -199,6 +205,10 @@
           <div class="stardew-dice__heading">
             <h2 id="board-dice-title">Stardew Dice</h2>
           </div>
+          <div class="stardew-dice__type" role="group" aria-label="Dice type">
+            <button type="button" data-dice-type="stardew" class="is-selected">Stardew</button>
+            <button type="button" data-dice-type="animal">Animal</button>
+          </div>
           <div class="stardew-dice__count" role="group" aria-label="Number of Stardew Dice">
             <button type="button" data-dice-count="1">1</button>
             <button type="button" data-dice-count="2">2</button>
@@ -218,18 +228,18 @@
                   <i class="stardew-dice__corner" data-corner="1,-1,1"></i>
                   <i class="stardew-dice__corner" data-corner="1,1,-1"></i>
                   <i class="stardew-dice__corner" data-corner="1,1,1"></i>
-                  <div class="stardew-dice__face stardew-dice__face--front"><img src="assets/dice-stardrop.png" alt=""></div>
-                  <div class="stardew-dice__face stardew-dice__face--back"><img src="assets/dice-heart.png" alt=""></div>
-                  <div class="stardew-dice__face stardew-dice__face--right"><img src="assets/dice-heart.png" alt=""></div>
-                  <div class="stardew-dice__face stardew-dice__face--left"><img src="assets/dice-heart.png" alt=""></div>
-                  <div class="stardew-dice__face stardew-dice__face--top"><img src="assets/dice-junimo.png" alt=""></div>
-                <div class="stardew-dice__face stardew-dice__face--bottom"><img src="assets/dice-junimo.png" alt=""></div>
+                  <div class="stardew-dice__face stardew-dice__face--front"><img src="assets/dice-stardrop.png?v=3" alt=""></div>
+                  <div class="stardew-dice__face stardew-dice__face--back"><img src="assets/dice-heart.png?v=3" alt=""></div>
+                  <div class="stardew-dice__face stardew-dice__face--right"><img src="assets/dice-heart.png?v=3" alt=""></div>
+                  <div class="stardew-dice__face stardew-dice__face--left"><img src="assets/dice-heart.png?v=3" alt=""></div>
+                  <div class="stardew-dice__face stardew-dice__face--top"><img src="assets/dice-junimo.png?v=3" alt=""></div>
+                <div class="stardew-dice__face stardew-dice__face--bottom"><img src="assets/dice-junimo.png?v=3" alt=""></div>
               </div>
                 <div class="stardew-dice__shadow"></div>
               </div>
             </div>
           </div>
-          <p class="stardew-dice__result" aria-live="polite">Ready to roll 3 dice</p>
+          <p class="stardew-dice__result" aria-live="polite"></p>
           <button class="stardew-dice__button" type="button">Roll Stardew Dice</button>
         </section>
       </aside>

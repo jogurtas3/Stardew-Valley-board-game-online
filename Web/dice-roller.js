@@ -1,17 +1,32 @@
 (() => {
-  const RESULTS = [
-    { name: "Stardrop", type: "stardrop", rotation: [0, 0, 0] },
-    { name: "Heart", type: "heart", rotation: [0, 180, 0] },
-    { name: "Heart", type: "heart", rotation: [0, -90, 0] },
-    { name: "Heart", type: "heart", rotation: [0, 90, 0] },
-    { name: "Junimo", type: "junimo", rotation: [-90, 0, 0] },
-    { name: "Junimo", type: "junimo", rotation: [90, 0, 180] },
+  const ROTATIONS = [
+    [0, 0, 0], [0, 180, 0], [0, -90, 0],
+    [0, 90, 0], [-90, 0, 0], [90, 0, 180],
   ];
+
+  const DICE = {
+    stardew: {
+      title: "Stardew Dice",
+      faces: ["stardrop", "heart", "heart", "heart", "junimo", "junimo"],
+      names: ["Stardrop", "Heart", "Heart", "Heart", "Junimo", "Junimo"],
+    },
+    animal: {
+      title: "Animal Dice",
+      // Physical layout reconstructed from all eight Reference/corner*.jpg photos:
+      // front, back, right, left, top, bottom.
+      faces: ["cow", "chicken", "duck", "sheep", "rabbit", "goat"],
+      names: ["Cow", "Chicken", "Duck", "Sheep", "Rabbit", "Goat"],
+      imageRotations: [0, 0, 0, 0, 0, 180],
+    },
+  };
+
+  const FACE_CLASSES = ["front", "back", "right", "left", "top", "bottom"];
 
   const PARTICLES = {
     heart: ["#ff3045", "#ff7d8a", "#ffd0d4"],
     junimo: ["#4fbd3b", "#9be34f", "#245e32"],
     stardrop: ["#8148d8", "#d07be8", "#f3d36a"],
+    animal: ["#f4d38a", "#b9773e", "#fff4ce"],
   };
 
   const USE_CASES = {
@@ -19,6 +34,8 @@
     2: "Use for Explore the Mine.",
     3: "Use for Fishing.",
   };
+
+  const ANIMAL_USE_CASE = "Use for collecting from animals.";
 
   function secureRandom(maximum) {
     if (globalThis.crypto?.getRandomValues) {
@@ -36,6 +53,9 @@
       this.button = root.querySelector(".stardew-dice__button");
       this.result = root.querySelector(".stardew-dice__result");
       this.countHint = root.querySelector(".stardew-dice__count-hint");
+      this.heading = root.querySelector(".stardew-dice__heading h2");
+      this.countControl = root.querySelector(".stardew-dice__count");
+      this.typeButtons = [...root.querySelectorAll("[data-dice-type]")];
       this.particleLayer = root.querySelector(".stardew-dice__particles");
       this.diceRow = root.querySelector(".stardew-dice__dice-row");
       this.countButtons = [...root.querySelectorAll("[data-dice-count]")]
@@ -72,8 +92,13 @@
       this.countButtons.forEach((button) => {
         button.addEventListener("click", () => this.setCount(Number(button.dataset.diceCount)));
       });
+      this.typeButtons.forEach((button) => {
+        button.addEventListener("click", () => this.setType(button.dataset.diceType));
+      });
 
-      this.setCount(Number(root.dataset.diceCount) || 3);
+      this.stardewCount = Number(root.dataset.diceCount) || 3;
+      this.type = "stardew";
+      this.setType("stardew");
       this.updateChamferedCorners();
 
       if (globalThis.ResizeObserver) {
@@ -84,9 +109,44 @@
       }
     }
 
+    setType(type) {
+      if (this.rolling || !DICE[type]) return;
+      if (this.type === "stardew" && this.count) this.stardewCount = this.count;
+      this.type = type;
+      this.root.dataset.diceType = type;
+      this.heading.textContent = DICE[type].title;
+      this.countControl.hidden = false;
+      this.countControl.setAttribute("aria-label",
+        type === "animal" ? "Number of Animal Dice (always 3)" : "Number of Stardew Dice");
+      this.countButtons.forEach((button) => {
+        const isAnimal = type === "animal";
+        button.hidden = isAnimal && Number(button.dataset.diceCount) !== 3;
+        button.disabled = isAnimal;
+      });
+      this.typeButtons.forEach((button) => {
+        const selected = button.dataset.diceType === type;
+        button.classList.toggle("is-selected", selected);
+        button.setAttribute("aria-pressed", String(selected));
+      });
+      this.cubes.forEach((cube) => {
+        FACE_CLASSES.forEach((faceClass, index) => {
+          const image = cube.querySelector(`.stardew-dice__face--${faceClass} img`);
+          image.src = type === "animal"
+            ? `assets/animal-dice-${DICE.animal.faces[index]}.png?v=1`
+            : `assets/dice-${DICE.stardew.faces[index]}.png?v=3`;
+          const rotation = type === "animal"
+            ? DICE.animal.imageRotations[index]
+            : faceClass === "bottom" ? 180 : 0;
+          image.style.transform = `rotate(${rotation}deg)`;
+        });
+      });
+      this.setCount(type === "animal" ? 3 : this.stardewCount);
+    }
+
     setCount(count) {
       if (this.rolling) return;
-      this.count = Math.max(1, Math.min(3, count));
+      this.count = this.type === "animal" ? 3 : Math.max(1, Math.min(3, count));
+      if (this.type === "stardew") this.stardewCount = this.count;
       this.root.dataset.diceCount = String(this.count);
       this.scenes.forEach((scene, index) => {
         scene.hidden = index >= this.count;
@@ -97,9 +157,15 @@
         button.setAttribute("aria-pressed", String(selected));
       });
       const noun = this.count === 1 ? "die" : "dice";
-      if (this.countHint) this.countHint.textContent = USE_CASES[this.count];
-      this.result.textContent = `Ready to roll ${this.count} ${noun}`;
-      this.button.textContent = this.count === 1 ? "Roll Stardew Die" : "Roll Stardew Dice";
+      if (this.countHint) {
+        this.countHint.textContent = this.type === "animal" ? ANIMAL_USE_CASE : USE_CASES[this.count];
+      }
+      this.result.textContent = "";
+      if (this.type === "animal") {
+        this.button.textContent = this.count === 1 ? "Roll Animal Die" : "Roll Animal Dice";
+      } else {
+        this.button.textContent = this.count === 1 ? "Roll Stardew Die" : "Roll Stardew Dice";
+      }
       requestAnimationFrame(() => this.updateChamferedCorners());
     }
 
@@ -145,15 +211,22 @@
       this.rolling = true;
       this.rollNumber += 1;
 
+      const die = DICE[this.type];
       const rolledResults = Array.from({ length: this.count }, () => {
         const index = Number.isInteger(forcedIndex)
-          ? Math.max(0, Math.min(RESULTS.length - 1, forcedIndex))
-          : secureRandom(RESULTS.length);
-        return { index, ...RESULTS[index] };
+          ? Math.max(0, Math.min(die.faces.length - 1, forcedIndex))
+          : secureRandom(die.faces.length);
+        return {
+          index,
+          name: die.names[index],
+          type: this.type === "animal" ? "animal" : die.faces[index],
+          rotation: ROTATIONS[index],
+        };
       });
       const fullTurns = this.rollNumber * 1080;
 
       this.countButtons.forEach((button) => { button.disabled = true; });
+      this.typeButtons.forEach((button) => { button.disabled = true; });
       this.button.disabled = true;
       this.button.textContent = "Rolling…";
       this.result.textContent = "The dice are rolling…";
@@ -175,11 +248,12 @@
         this.button.textContent = "Roll Again";
         this.button.disabled = false;
         this.countButtons.forEach((button) => { button.disabled = false; });
+        this.typeButtons.forEach((button) => { button.disabled = false; });
         this.rolling = false;
         this.burst(rolledResults.map(({ type }) => type));
         this.root.dispatchEvent(new CustomEvent("stardew-dice:result", {
           bubbles: true,
-          detail: { count: this.count, results: rolledResults },
+          detail: { diceType: this.type, count: this.count, results: rolledResults },
         }));
       };
 

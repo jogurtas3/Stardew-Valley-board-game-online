@@ -1,0 +1,26 @@
+{
+  "description": "Animal Dice sienelių išdėstymas, atkurtas pagal visas aštuonias Reference/corner*.jpg nuotraukas",
+  "evidence": {
+    "corner1.jpg": ["cow", "rabbit", "duck"],
+    "corner2.jpg": ["duck", "rabbit", "chicken"],
+    "corner3.jpg": ["rabbit", "chicken", "sheep"],
+    "corner4.jpg": ["rabbit", "sheep", "cow"],
+    "corner5.jpg": ["cow", "goat", "duck"],
+    "corner6.jpg": ["duck", "chicken", "goat"],
+    "corner7.jpg": ["chicken", "sheep", "goat"],
+    "corner8.jpg": ["sheep", "cow", "goat"]
+  },
+  "oppositePairs": [
+    ["cow", "chicken"],
+    ["rabbit", "goat"],
+    ["duck", "sheep"]
+  ],
+  "faces": {
+    "front": { "animal": "cow", "image": "animal-dice-cow.png", "imageRotationDeg": 0 },
+    "back": { "animal": "chicken", "image": "animal-dice-chicken.png", "imageRotationDeg": 0 },
+    "right": { "animal": "duck", "image": "animal-dice-duck.png", "imageRotationDeg": 0 },
+    "left": { "animal": "sheep", "image": "animal-dice-sheep.png", "imageRotationDeg": 0 },
+    "top": { "animal": "rabbit", "image": "animal-dice-rabbit.png", "imageRotationDeg": 0 },
+    "bottom": { "animal": "goat", "image": "animal-dice-goat.png", "imageRotationDeg": 180 }
+  }
+}
