@@ -6,30 +6,40 @@
   <meta name="description" content="Play Stardew Valley: The Board Game in your browser">
   <title>Stardew Valley Board Game</title>
   <link rel="stylesheet" href="dice-roller.css?v=6">
-  <link rel="stylesheet" href="styles.css?v=96">
+  <link rel="stylesheet" href="styles.css?v=116">
   <script src="dice-roller.js?v=5" defer></script>
-  <script src="app.js?v=70" defer></script>
+  <script src="app.js?v=86" defer></script>
 </head>
 <body>
   <main class="page-shell">
-    <section id="welcome-picker" class="picker welcome-picker" aria-labelledby="welcome-picker-title">
-      <h1 id="welcome-picker-title">Stardew Valley Board Game</h1>
-      <p class="instruction">What would you like to do?</p>
-      <div class="welcome-actions">
-        <button id="new-game-button" class="action-button continue-button" type="button">Start New Game</button>
-        <button id="view-board-button" class="action-button view-board-button" type="button">View Board with Animation</button>
-        <button id="view-board-static-button" class="action-button view-board-static-button" type="button">View Board without Animation</button>
-      </div>
-    </section>
+    <div id="welcome-screen" class="welcome-screen">
+      <img class="welcome-header" src="assets/site-header.png" alt="Stardew Valley: The Board Game" width="2000" height="560" fetchpriority="high">
+      <section id="welcome-picker" class="picker welcome-picker" aria-labelledby="welcome-picker-title">
+        <h1 id="welcome-picker-title" class="welcome-title">Welcome!</h1>
+        <p class="instruction welcome-instruction">What would you like to do?</p>
+        <div class="welcome-actions">
+          <button id="new-game-button" class="action-button continue-button" type="button">Start New Game</button>
+          <button id="view-board-button" class="action-button view-board-button" type="button">View Board with Animation</button>
+          <button id="view-board-static-button" class="action-button view-board-static-button" type="button">View Board without Animation</button>
+        </div>
+      </section>
+    </div>
 
     <section id="deck-size-picker" class="picker deck-size-picker" aria-labelledby="deck-size-picker-title" hidden>
       <button id="deck-stage-back" class="stage-back-button" type="button">Back</button>
-      <h1 id="deck-size-picker-title">Choose the number of Season Cards</h1>
-      <p class="instruction">Enter a number from 16 to 84.</p>
+      <h1 id="deck-size-picker-title">Choose number of cards per season</h1>
+      <p class="instruction">The number includes one Last Day card in each season.</p>
 
       <form id="deck-size-form" class="deck-size-form" novalidate>
-        <label for="deck-size-input">Number of cards</label>
-        <input id="deck-size-input" name="deck-size" type="number" min="16" max="84" step="1" value="16" inputmode="numeric" required>
+        <label for="deck-size-input">Cards in each season</label>
+        <div class="deck-size-stepper">
+          <input id="deck-size-input" name="deck-size" type="number" min="4" max="21" step="1" value="4" inputmode="numeric" required>
+          <div class="deck-size-stepper-buttons">
+            <button id="deck-size-increase" type="button" aria-label="Increase cards per season">▲</button>
+            <button id="deck-size-decrease" type="button" aria-label="Decrease cards per season">▼</button>
+          </div>
+        </div>
+        <output id="deck-size-total" class="deck-size-total" for="deck-size-input">4 cards per season: 3 rounds + 1 Last Day. 16 Season Cards total.</output>
         <p id="deck-size-error" class="deck-size-error" aria-live="polite"></p>
         <button class="action-button continue-button deck-size-submit" type="submit">Continue</button>
       </form>
@@ -113,22 +123,22 @@
             <button id="season-deck" class="season-deck" data-card-count="16" type="button" aria-label="Draw a Spring season card"></button>
             <div id="season-discard-pile" class="season-discard-pile" aria-label="Face-up discarded Season Cards"></div>
 
-            <img class="map-tile forageable-tile" style="--left: 51.71%; --top: 33.5%;" src="assets/spring-forageable-back.png" alt="Facedown Spring forageable tile" draggable="false">
-            <img class="map-tile forageable-tile" style="--left: 56.64%; --top: 44.07%;" src="assets/spring-forageable-back.png" alt="Facedown Spring forageable tile" draggable="false">
-            <img class="map-tile forageable-tile" style="--left: 81.36%; --top: 46.07%;" src="assets/spring-forageable-back.png" alt="Facedown Spring forageable tile" draggable="false">
-            <img class="map-tile forageable-tile" style="--left: 45.86%; --top: 53.14%;" src="assets/spring-forageable-back.png" alt="Facedown Spring forageable tile" draggable="false">
-            <img class="map-tile forageable-tile" style="--left: 34.29%; --top: 56.07%;" src="assets/spring-forageable-back.png" alt="Facedown Spring forageable tile" draggable="false">
-            <img class="map-tile forageable-tile" style="--left: 16.5%; --top: 63.14%;" src="assets/spring-forageable-back.png" alt="Facedown Spring forageable tile" draggable="false">
-            <img class="map-tile forageable-tile" style="--left: 56.93%; --top: 66.93%;" src="assets/spring-forageable-back.png" alt="Facedown Spring forageable tile" draggable="false">
-            <img class="map-tile forageable-tile" style="--left: 70.29%; --top: 66.93%;" src="assets/spring-forageable-back.png" alt="Facedown Spring forageable tile" draggable="false">
-            <img class="map-tile forageable-tile" style="--left: 78.07%; --top: 72.86%;" src="assets/spring-forageable-back.png" alt="Facedown Spring forageable tile" draggable="false">
-            <img class="map-tile forageable-tile" style="--left: 31.36%; --top: 75.79%;" src="assets/spring-forageable-back.png" alt="Facedown Spring forageable tile" draggable="false">
-            <img class="map-tile forageable-tile" style="--left: 70.71%; --top: 49.64%;" src="assets/spring-forageable-back.png" alt="Facedown Spring forageable tile" draggable="false">
+            <img class="map-tile forageable-tile" data-tile-id="forage-1" style="--left: 51.71%; --top: 33.5%;" src="assets/spring-forageable-back.png" alt="Facedown Spring forageable tile" draggable="false">
+            <img class="map-tile forageable-tile" data-tile-id="forage-2" style="--left: 56.64%; --top: 44.07%;" src="assets/spring-forageable-back.png" alt="Facedown Spring forageable tile" draggable="false">
+            <img class="map-tile forageable-tile" data-tile-id="forage-3" style="--left: 81.71%; --top: 45.88%;" src="assets/spring-forageable-back.png" alt="Facedown Spring forageable tile" draggable="false">
+            <img class="map-tile forageable-tile" data-tile-id="forage-4" style="--left: 45.73%; --top: 53.52%;" src="assets/spring-forageable-back.png" alt="Facedown Spring forageable tile" draggable="false">
+            <img class="map-tile forageable-tile" data-tile-id="forage-5" style="--left: 33.35%; --top: 56.07%;" src="assets/spring-forageable-back.png" alt="Facedown Spring forageable tile" draggable="false">
+            <img class="map-tile forageable-tile" data-tile-id="forage-6" style="--left: 16.5%; --top: 63.14%;" src="assets/spring-forageable-back.png" alt="Facedown Spring forageable tile" draggable="false">
+            <img class="map-tile forageable-tile" data-tile-id="forage-7" style="--left: 56.93%; --top: 66.93%;" src="assets/spring-forageable-back.png" alt="Facedown Spring forageable tile" draggable="false">
+            <img class="map-tile forageable-tile" data-tile-id="forage-8" style="--left: 70.29%; --top: 66.93%;" src="assets/spring-forageable-back.png" alt="Facedown Spring forageable tile" draggable="false">
+            <img class="map-tile forageable-tile" data-tile-id="forage-9" style="--left: 78.37%; --top: 73.12%;" src="assets/spring-forageable-back.png" alt="Facedown Spring forageable tile" draggable="false">
+            <img class="map-tile forageable-tile" data-tile-id="forage-10" style="--left: 31.36%; --top: 75.79%;" src="assets/spring-forageable-back.png" alt="Facedown Spring forageable tile" draggable="false">
+            <img class="map-tile forageable-tile" data-tile-id="forage-11" style="--left: 70.71%; --top: 49.64%;" src="assets/spring-forageable-back.png" alt="Facedown Spring forageable tile" draggable="false">
 
-            <img class="map-tile tree-tile" style="--left: 21.75%; --top: 54.65%;" src="assets/spring-tree-tile.png" alt="Spring tree tile" draggable="false">
-            <img class="map-tile tree-tile" style="--left: 45.31%; --top: 59.38%;" src="assets/spring-tree-tile.png" alt="Spring tree tile" draggable="false">
-            <img class="map-tile tree-tile" style="--left: 29.01%; --top: 63.3%;" src="assets/spring-tree-tile.png" alt="Spring tree tile" draggable="false">
-            <img class="map-tile tree-tile" style="--left: 24.64%; --top: 75.8%;" src="assets/spring-tree-tile.png" alt="Spring tree tile" draggable="false">
+            <img class="map-tile tree-tile" data-tile-id="tree-1" style="--left: 21.75%; --top: 54.65%;" src="assets/spring-tree-tile.png" alt="Spring tree tile" draggable="false">
+            <img class="map-tile tree-tile" data-tile-id="tree-2" style="--left: 45.31%; --top: 59.38%;" src="assets/spring-tree-tile.png" alt="Spring tree tile" draggable="false">
+            <img class="map-tile tree-tile" data-tile-id="tree-3" style="--left: 29.01%; --top: 63.3%;" src="assets/spring-tree-tile.png" alt="Spring tree tile" draggable="false">
+            <img class="map-tile tree-tile" data-tile-id="tree-4" style="--left: 24.64%; --top: 75.8%;" src="assets/spring-tree-tile.png" alt="Spring tree tile" draggable="false">
 
             <button class="action-hotspot" style="--left: 36.25%; --top: 39.93%; --width: 9.46%; --height: 4.1%;" type="button" aria-label="Collect from Animals"></button>
             <button class="action-hotspot" style="--left: 34.61%; --top: 44.36%; --width: 9.25%; --height: 4.1%;" type="button" aria-label="Water the Crops"></button>
@@ -147,6 +157,23 @@
         </div>
       </div>
 
+      <aside class="board-player-mat" aria-labelledby="board-player-mat-title" tabindex="0">
+        <h2 id="board-player-mat-title">Player Mat</h2>
+        <img id="board-player-mat-image" src="assets/fishing.jpg" alt="Fishing player mat" draggable="false">
+        <section class="owned-cards" aria-labelledby="owned-cards-title">
+          <div class="owned-cards-heading">
+            <h3 id="owned-cards-title">Owned Cards</h3>
+            <label class="owned-card-add" for="owned-card-input">
+              Add cards
+              <input id="owned-card-input" type="file" accept="image/*" multiple>
+            </label>
+          </div>
+          <div id="owned-cards-list" class="owned-cards-list" role="list"></div>
+          <p id="owned-cards-empty" class="owned-cards-empty">No cards stored for this player.</p>
+          <p id="owned-cards-status" class="owned-cards-status" aria-live="polite"></p>
+        </section>
+      </aside>
+
       <aside class="path-drawing-tools" aria-label="Path drawing tools">
         <h2>Draw highlight lines</h2>
         <p>Draw directly over the board, then copy the coordinates.</p>
@@ -162,7 +189,7 @@
           <button id="path-undo" type="button">Undo</button>
           <button id="path-clear" type="button">Clear</button>
         </div>
-        <textarea id="path-coordinates" rows="5" readonly aria-label="Drawn line coordinates" placeholder="The coordinates will appear here"></textarea>
+        <textarea id="path-coordinates" rows="1" wrap="off" readonly aria-label="Drawn line coordinates" placeholder="The coordinates will appear here"></textarea>
         <button id="path-copy" class="path-copy-button" type="button">Copy coordinates</button>
         <p id="path-tool-status" class="path-tool-status" aria-live="polite"></p>
       </aside>

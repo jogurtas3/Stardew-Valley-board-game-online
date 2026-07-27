@@ -29,7 +29,7 @@ const professions = [
   },
 ];
 
-const welcomePicker = document.querySelector("#welcome-picker");
+const welcomePicker = document.querySelector("#welcome-screen");
 const newGameButton = document.querySelector("#new-game-button");
 const viewBoardButton = document.querySelector("#view-board-button");
 const viewBoardStaticButton = document.querySelector("#view-board-static-button");
@@ -40,6 +40,9 @@ const boardStageBack = document.querySelector("#board-stage-back");
 const deckSizePicker = document.querySelector("#deck-size-picker");
 const deckSizeForm = document.querySelector("#deck-size-form");
 const deckSizeInput = document.querySelector("#deck-size-input");
+const deckSizeIncrease = document.querySelector("#deck-size-increase");
+const deckSizeDecrease = document.querySelector("#deck-size-decrease");
+const deckSizeTotal = document.querySelector("#deck-size-total");
 const deckSizeError = document.querySelector("#deck-size-error");
 const tokenPicker = document.querySelector("#token-picker");
 const picker = document.querySelector("#profession-picker");
@@ -50,6 +53,11 @@ const gameBoard = document.querySelector("#game-board");
 const professionOption = document.querySelector("#profession-option");
 const professionPreview = document.querySelector("#profession-preview");
 const professionPawn = document.querySelector("#profession-pawn");
+const boardPlayerMatImage = document.querySelector("#board-player-mat-image");
+const ownedCardInput = document.querySelector("#owned-card-input");
+const ownedCardsList = document.querySelector("#owned-cards-list");
+const ownedCardsEmpty = document.querySelector("#owned-cards-empty");
+const ownedCardsStatus = document.querySelector("#owned-cards-status");
 const professionInstruction = document.querySelector("#profession-instruction");
 const professionName = document.querySelector("#profession-name");
 const previousButton = document.querySelector("#previous-profession");
@@ -96,6 +104,40 @@ const boardRoutes = Object.freeze({
   11: { from: "river", to: "animals", path: [[22.2, 70.8], [32.95, 70.6]] },
 });
 
+const routeTileIds = Object.freeze({
+  1: ["forage-1", "forage-2"],
+  2: ["forage-5", "forage-6", "tree-1", "tree-3"],
+  3: ["forage-2", "forage-4"],
+  4: ["forage-2", "forage-11"],
+  5: ["forage-3", "forage-11"],
+  6: ["forage-8", "forage-11"],
+  7: ["forage-8", "forage-9"],
+  8: ["forage-7", "forage-8"],
+  9: ["forage-7", "tree-2"],
+  10: ["forage-4", "forage-5", "tree-2", "tree-3"],
+  11: ["forage-10", "tree-3", "tree-4"],
+});
+
+const forageableTileFaces = Object.freeze([
+  { name: "Daffodil 1", source: "assets/spring-daffodil-1.png" },
+  { name: "Daffodil 2", source: "assets/spring-daffodil-2.png" },
+  { name: "Fiber", source: "assets/spring-fiber.png" },
+  { name: "Horseradish 2", source: "assets/spring-horseradish-2.png" },
+  { name: "Horseradish 3", source: "assets/spring-horseradish-3.png" },
+  { name: "Leek 2", source: "assets/spring-leek-2.png" },
+  { name: "Leek 3", source: "assets/spring-leek-3.png" },
+  { name: "Stone 1", source: "assets/spring-stone-1.png" },
+  { name: "Stone 2", source: "assets/spring-stone-2.png" },
+  { name: "Tree reward 1", source: "assets/spring-forageable-tree-1.png" },
+  { name: "Tree reward 2", source: "assets/spring-forageable-tree-2.png" },
+]);
+
+const forageableBackSource = "assets/spring-forageable-back.png";
+const treeBackSource = "assets/spring-tree-tile.png";
+const woodTileFace = Object.freeze({ name: "Wood", source: "assets/spring-wood.png" });
+
+// Keep every pawn and position ready for multiplayer, but only show the chosen player for now.
+const multiplayerPawnsEnabled = false;
 const pawnOffsets = Object.freeze([
   [-1.45, -0.55],
   [1.45, -0.55],
@@ -103,7 +145,59 @@ const pawnOffsets = Object.freeze([
   [1.45, 0.75],
 ]);
 
+const farmhousePawnPositions = Object.freeze([
+  [35.44, 42.71],
+  [38.81, 38.87],
+  [42.43, 38.15],
+  [45.58, 45.07],
+]);
+
+const mountainsPawnPositions = Object.freeze([
+  [70.63, 26.15],
+  [73.75, 27.54],
+  [63.67, 30.52],
+  [67.01, 29.12],
+]);
+
+const townSquarePawnPositions = Object.freeze([
+  [60.81, 56.83],
+  [63.78, 56.00],
+  [50.91, 50.99],
+  [54.64, 52.38],
+]);
+
+const museumBlacksmithPawnPositions = Object.freeze([
+  [87.90, 58.01],
+  [90.13, 57.65],
+  [81.63, 52.10],
+  [83.92, 54.07],
+]);
+
+const marniesRanchPawnPositions = Object.freeze([
+  [39.93, 67.44],
+  [41.54, 66.33],
+  [35.73, 67.97],
+  [33.66, 66.94],
+]);
+
+const riverFishingPawnPositions = Object.freeze([
+  [23.23, 68.08],
+  [23.94, 72.03],
+  [25.20, 66.83],
+  [26.45, 69.87],
+]);
+
+const oceanFishingPawnPositions = Object.freeze([
+  [73.21, 77.54],
+  [70.48, 80.20],
+  [72.46, 80.05],
+  [74.61, 79.59],
+]);
+
 const seasonDeckAnimation = Object.freeze({
+  seasonCount: 4,
+  minimumCardsPerSeason: 4,
+  maximumCardsPerSeason: 21,
   minimumCards: 16,
   maximumCards: 84,
   spreadInCardWidths: 2.8,
@@ -123,6 +217,8 @@ const seasonDeckAnimation = Object.freeze({
 [
   seasonDeckAnimation.lastCardFrontImage,
   ...seasonDeckAnimation.standardCardFrontImages,
+  ...forageableTileFaces.map((face) => face.source),
+  woodTileFace.source,
 ].forEach((source) => {
   const image = new Image();
   image.src = source;
@@ -146,8 +242,115 @@ let isPathDrawingMode = false;
 let isDrawingGuideLine = false;
 let activeGuideStroke = null;
 let activePawnId = professions[0].id;
+let pendingRouteId = null;
 const pawnStates = new Map();
+const tileRevealTimers = new Map();
 const guideStrokes = [];
+const ownedCardsStorageKey = "stardew-owned-player-cards-v1";
+const maximumOwnedCards = 12;
+const ownedCardsByProfession = loadOwnedCards();
+
+function loadOwnedCards() {
+  try {
+    const savedCards = JSON.parse(localStorage.getItem(ownedCardsStorageKey) || "{}");
+    return savedCards && typeof savedCards === "object" ? savedCards : {};
+  } catch {
+    return {};
+  }
+}
+
+function saveOwnedCards() {
+  try {
+    localStorage.setItem(ownedCardsStorageKey, JSON.stringify(ownedCardsByProfession));
+    ownedCardsStatus.textContent = "Cards saved in this browser.";
+  } catch {
+    ownedCardsStatus.textContent = "The cards could not be saved. Try smaller image files.";
+  }
+}
+
+function renderOwnedCards() {
+  const profession = professions[currentProfessionIndex];
+  const cards = ownedCardsByProfession[profession.id] || [];
+  const fragment = document.createDocumentFragment();
+
+  cards.forEach((card) => {
+    const cardElement = document.createElement("article");
+    const image = document.createElement("img");
+    const name = document.createElement("span");
+    const removeButton = document.createElement("button");
+
+    cardElement.className = "owned-card";
+    cardElement.setAttribute("role", "listitem");
+    image.src = card.image;
+    image.alt = card.name;
+    image.draggable = false;
+    name.textContent = card.name;
+    removeButton.className = "owned-card-remove";
+    removeButton.type = "button";
+    removeButton.textContent = "×";
+    removeButton.setAttribute("aria-label", `Remove ${card.name}`);
+    removeButton.addEventListener("click", (event) => {
+      event.stopPropagation();
+      ownedCardsByProfession[profession.id] = cards.filter((entry) => entry.id !== card.id);
+      saveOwnedCards();
+      renderOwnedCards();
+    });
+
+    cardElement.append(image, name, removeButton);
+    fragment.append(cardElement);
+  });
+
+  ownedCardsList.replaceChildren(fragment);
+  ownedCardsEmpty.hidden = cards.length > 0;
+}
+
+function cardImageFromFile(file) {
+  return new Promise((resolve, reject) => {
+    const source = URL.createObjectURL(file);
+    const image = new Image();
+
+    image.onload = () => {
+      const scale = Math.min(1, 700 / image.naturalWidth, 1000 / image.naturalHeight);
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.max(1, Math.round(image.naturalWidth * scale));
+      canvas.height = Math.max(1, Math.round(image.naturalHeight * scale));
+      canvas.getContext("2d").drawImage(image, 0, 0, canvas.width, canvas.height);
+      URL.revokeObjectURL(source);
+      resolve(canvas.toDataURL("image/webp", 0.82));
+    };
+    image.onerror = () => {
+      URL.revokeObjectURL(source);
+      reject(new Error("Could not read card image"));
+    };
+    image.src = source;
+  });
+}
+
+ownedCardInput.addEventListener("change", async () => {
+  const profession = professions[currentProfessionIndex];
+  const cards = ownedCardsByProfession[profession.id] || [];
+  const availableSlots = Math.max(0, maximumOwnedCards - cards.length);
+  const files = [...ownedCardInput.files].slice(0, availableSlots);
+
+  ownedCardsStatus.textContent = availableSlots === 0 ? "This player already has 12 cards." : "Adding cards…";
+
+  for (const file of files) {
+    try {
+      cards.push({
+        id: globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random()}`,
+        name: file.name.replace(/\.[^.]+$/, ""),
+        image: await cardImageFromFile(file),
+      });
+    } catch {
+      ownedCardsStatus.textContent = `${file.name} could not be added.`;
+    }
+  }
+
+  ownedCardsByProfession[profession.id] = cards;
+  ownedCardInput.value = "";
+  saveOwnedCards();
+  renderOwnedCards();
+});
 
 async function renderSavedPathHighlights() {
   try {
@@ -185,6 +388,9 @@ function renderProfession() {
   professionPreview.alt = profession.alt;
   professionPawn.src = profession.pawn;
   professionPawn.alt = `${profession.name} player pawn`;
+  boardPlayerMatImage.src = profession.image;
+  boardPlayerMatImage.alt = profession.alt;
+  renderOwnedCards();
   professionInstruction.textContent = "Select your player mat to continue:";
   professionName.textContent = profession.name;
   professionOption.setAttribute("aria-label", `Choose ${profession.name}`);
@@ -290,7 +496,9 @@ function showGameBoard(animateSetup = true, returnTarget = "welcome") {
   picker.hidden = true;
   gameBoard.hidden = false;
   gameBoard.classList.toggle("is-static-view", !animateSetup);
-  setPlayerPawn(returnTarget === "profession");
+  clearTileChoice();
+  resetMapTiles();
+  setPlayerPawn(true);
   setPathDrawingMode(false);
   resetBoardView();
 
@@ -299,12 +507,28 @@ function showGameBoard(animateSetup = true, returnTarget = "welcome") {
   }
 }
 
+function updateDeckSizeSummary(cardsPerSeason) {
+  if (!Number.isInteger(cardsPerSeason)) {
+    deckSizeTotal.textContent = "Enter a whole number of cards per season.";
+    return;
+  }
+
+  const roundsPerSeason = Math.max(0, cardsPerSeason - 1);
+  const totalCards = cardsPerSeason * seasonDeckAnimation.seasonCount;
+  deckSizeTotal.textContent = `${cardsPerSeason} cards per season: ${roundsPerSeason} rounds + 1 Last Day. ${totalCards} Season Cards total.`;
+}
+
 function renderSeasonDeck(requestedCardCount = seasonDeck.dataset.cardCount) {
   const parsedCount = Number.parseInt(requestedCardCount, 10);
-  const cardCount = Math.min(
-    seasonDeckAnimation.maximumCards,
-    Math.max(seasonDeckAnimation.minimumCards, Number.isFinite(parsedCount) ? parsedCount : seasonDeckAnimation.minimumCards),
+  const requestedCardsPerSeason = Math.round(
+    (Number.isFinite(parsedCount) ? parsedCount : seasonDeckAnimation.minimumCards)
+      / seasonDeckAnimation.seasonCount,
   );
+  const cardsPerSeason = Math.min(
+    seasonDeckAnimation.maximumCardsPerSeason,
+    Math.max(seasonDeckAnimation.minimumCardsPerSeason, requestedCardsPerSeason),
+  );
+  const cardCount = cardsPerSeason * seasonDeckAnimation.seasonCount;
   const fragment = document.createDocumentFragment();
   const maximumOffset = seasonDeckAnimation.spreadInCardWidths * 100;
 
@@ -316,20 +540,24 @@ function renderSeasonDeck(requestedCardCount = seasonDeck.dataset.cardCount) {
   seasonDeck.disabled = false;
   seasonDeck.replaceChildren();
   seasonDeck.dataset.cardCount = String(cardCount);
+  seasonDeck.dataset.cardsPerSeason = String(cardsPerSeason);
   seasonDeck.style.setProperty("--deal-duration", `${seasonDeckAnimation.slideDurationMs}ms`);
-  seasonDeck.setAttribute("aria-label", `Draw a Spring season card. ${cardCount} cards remain.`);
+  seasonDeck.setAttribute("aria-label", `Draw a Season Card. ${cardCount} cards remain.`);
 
   for (let index = 0; index < cardCount; index += 1) {
     const card = document.createElement("img");
     const progress = index / (cardCount - 1);
     const staggerProgress = index === 0 ? 0 : (index - 1) / (cardCount - 2);
+    const drawPosition = cardCount - 1 - index;
+    const isLastDay = drawPosition % cardsPerSeason === cardsPerSeason - 1;
 
     card.className = "season-card";
-    card.src = index === 0
+    card.src = isLastDay
       ? seasonDeckAnimation.bottomCardImage
       : seasonDeckAnimation.cardBackImage;
     card.alt = "";
     card.draggable = false;
+    card.dataset.lastDay = String(isLastDay);
     card.setAttribute("aria-hidden", "true");
     card.style.setProperty("--fan-offset", `${maximumOffset * progress}%`);
     card.style.setProperty("--deal-delay", `${seasonDeckAnimation.maximumStaggerMs * staggerProgress}ms`);
@@ -353,7 +581,9 @@ function playSeasonDeckAnimation() {
 
 function setSeasonCardCount(cardCount, animate = true) {
   const renderedCount = renderSeasonDeck(cardCount);
-  deckSizeInput.value = String(renderedCount);
+  const cardsPerSeason = renderedCount / seasonDeckAnimation.seasonCount;
+  deckSizeInput.value = String(cardsPerSeason);
+  updateDeckSizeSummary(cardsPerSeason);
 
   if (animate && !gameBoard.hidden) {
     playSeasonDeckAnimation();
@@ -390,7 +620,7 @@ function drawSeasonCard() {
 
   const remainingBeforeDraw = seasonDeck.childElementCount;
   const topCard = seasonDeck.lastElementChild;
-  const frontImage = remainingBeforeDraw === 1
+  const frontImage = topCard.dataset.lastDay === "true"
     ? seasonDeckAnimation.lastCardFrontImage
     : seasonDeckAnimation.standardCardFrontImages[
       randomSeasonCardIndex(seasonDeckAnimation.standardCardFrontImages.length)
@@ -419,8 +649,8 @@ function drawSeasonCard() {
   seasonDeck.setAttribute(
     "aria-label",
     remainingBeforeDraw > 1
-      ? `Draw a Spring season card. ${remainingBeforeDraw - 1} cards remain.`
-      : "The Spring season deck is empty.",
+      ? `Draw a Season Card. ${remainingBeforeDraw - 1} cards remain.`
+      : "The Season Card deck is empty.",
   );
   boardSurface.append(drawnCard);
 
@@ -446,6 +676,28 @@ function drawSeasonCard() {
 seasonDeck.addEventListener("click", drawSeasonCard);
 
 function pawnPositionFor(state, nodeId = state.node) {
+  if (nodeId === "farm") {
+    return farmhousePawnPositions[state.index];
+  }
+  if (nodeId === "mountains") {
+    return mountainsPawnPositions[state.index];
+  }
+  if (nodeId === "town") {
+    return townSquarePawnPositions[state.index];
+  }
+  if (nodeId === "museum") {
+    return museumBlacksmithPawnPositions[state.index];
+  }
+  if (nodeId === "animals") {
+    return marniesRanchPawnPositions[state.index];
+  }
+  if (nodeId === "river") {
+    return riverFishingPawnPositions[state.index];
+  }
+  if (nodeId === "ocean") {
+    return oceanFishingPawnPositions[state.index];
+  }
+
   const center = boardNodes[nodeId];
   const offset = pawnOffsets[state.index];
   return [center[0] + offset[0], center[1] + offset[1]];
@@ -458,15 +710,26 @@ function updateRouteAvailability() {
     const isReachable = Boolean(
       state
       && !state.animation
+      && pendingRouteId === null
       && route
       && (state.node === route.from || state.node === route.to),
     );
     path.classList.toggle("is-reachable", isReachable);
+    path.classList.toggle("is-awaiting-tile", path.dataset.figureId === pendingRouteId);
   });
 }
 
 function selectPawn(pawnId) {
+  if (pendingRouteId !== null) {
+    return;
+  }
+
   activePawnId = pawnId;
+  const selectedState = pawnStates.get(pawnId);
+  if (selectedState) {
+    currentProfessionIndex = selectedState.index;
+    renderProfession();
+  }
   pawnStates.forEach((state) => {
     const isActive = state.profession.id === pawnId;
     state.element.classList.toggle("is-active", isActive);
@@ -525,7 +788,10 @@ function setPlayerPawn(visible) {
   }
 
   activePawnId = professions[currentProfessionIndex].id;
-  pawnStates.forEach(renderPawnPosition);
+  pawnStates.forEach((state) => {
+    renderPawnPosition(state);
+    state.element.hidden = !multiplayerPawnsEnabled && state.profession.id !== activePawnId;
+  });
   selectPawn(activePawnId);
 }
 
@@ -579,7 +845,76 @@ function buildPawnHopKeyframes(points) {
   return { keyframes, totalDistance };
 }
 
-function hopPawnAlongRoute(figureId) {
+function shuffle(items) {
+  for (let index = items.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [items[index], items[randomIndex]] = [items[randomIndex], items[index]];
+  }
+  return items;
+}
+
+function cancelTileRevealTimers() {
+  tileRevealTimers.forEach((timer) => clearTimeout(timer));
+  tileRevealTimers.clear();
+  boardSurface.querySelectorAll(".drawn-map-tile").forEach((tile) => tile.remove());
+}
+
+function resetMapTiles() {
+  cancelTileRevealTimers();
+  const shuffledForageables = shuffle([...forageableTileFaces]);
+
+  boardSurface.querySelectorAll(".forageable-tile").forEach((tile, index) => {
+    const face = shuffledForageables[index];
+    tile.dataset.faceSource = face.source;
+    tile.dataset.faceName = face.name;
+    tile.src = forageableBackSource;
+    tile.alt = "Facedown Spring forageable tile";
+    tile.hidden = false;
+    tile.classList.remove("is-being-revealed", "is-being-collected");
+  });
+
+  boardSurface.querySelectorAll(".tree-tile").forEach((tile) => {
+    tile.dataset.faceSource = woodTileFace.source;
+    tile.dataset.faceName = woodTileFace.name;
+    tile.src = treeBackSource;
+    tile.alt = "Spring tree tile";
+    tile.hidden = false;
+    tile.classList.remove("is-being-revealed", "is-being-collected");
+  });
+}
+
+function tilesBesideRoute(figureId) {
+  const tileIds = routeTileIds[figureId] ?? [];
+  return tileIds
+    .map((tileId) => boardSurface.querySelector(`[data-tile-id="${tileId}"]`))
+    .filter((tile) => tile && !tile.hidden);
+}
+
+function clearTileChoice(releaseRoute = true) {
+  boardSurface.classList.remove("is-choosing-route-tile");
+  boardSurface.querySelectorAll(".map-tile.is-route-choice").forEach((tile) => {
+    tile.classList.remove("is-route-choice");
+    tile.removeAttribute("role");
+    tile.removeAttribute("tabindex");
+  });
+  if (releaseRoute) {
+    pendingRouteId = null;
+  }
+  updateRouteAvailability();
+}
+
+function chooseTileBeforeMoving(figureId, tiles) {
+  pendingRouteId = String(figureId);
+  boardSurface.classList.add("is-choosing-route-tile");
+  tiles.forEach((tile) => {
+    tile.classList.add("is-route-choice");
+    tile.setAttribute("role", "button");
+    tile.setAttribute("tabindex", "0");
+  });
+  updateRouteAvailability();
+}
+
+function hopPawnAlongRoute(figureId, tileChoiceComplete = false) {
   const route = boardRoutes[figureId];
   const state = pawnStates.get(activePawnId);
   if (!route || !state || boardPawns.hidden || isPathDrawingMode || state.animation) {
@@ -589,6 +924,14 @@ function hopPawnAlongRoute(figureId) {
   if (state.node !== route.from && state.node !== route.to) {
     showUnavailableRoute(state);
     return;
+  }
+
+  if (!tileChoiceComplete) {
+    const routeTiles = tilesBesideRoute(figureId);
+    if (routeTiles.length > 0) {
+      chooseTileBeforeMoving(figureId, routeTiles);
+      return;
+    }
   }
 
   clearTimeout(state.arrivalTimer);
@@ -635,10 +978,85 @@ savedPathHighlights.addEventListener("click", (event) => {
 
   event.preventDefault();
   event.stopPropagation();
+
+  if (pendingRouteId !== null) {
+    if (selectedPath.dataset.figureId === pendingRouteId) {
+      clearTileChoice();
+    }
+    return;
+  }
+
   hopPawnAlongRoute(selectedPath.dataset.figureId);
 });
 
+function collectRouteTile(tile) {
+  if (!tile.classList.contains("is-route-choice") || pendingRouteId === null) {
+    return;
+  }
+
+  const routeId = pendingRouteId;
+  const drawnTile = document.createElement("div");
+  const inner = document.createElement("div");
+  const back = document.createElement("img");
+  const front = document.createElement("img");
+
+  drawnTile.className = "drawn-map-tile";
+  drawnTile.style.setProperty("--tile-start-left", tile.style.getPropertyValue("--left"));
+  drawnTile.style.setProperty("--tile-start-top", tile.style.getPropertyValue("--top"));
+  drawnTile.setAttribute("role", "img");
+  drawnTile.setAttribute("aria-label", tile.dataset.faceName);
+  inner.className = "drawn-map-tile__inner";
+  back.className = "drawn-map-tile__face drawn-map-tile__back";
+  back.src = tile.src;
+  back.alt = "";
+  front.className = "drawn-map-tile__face drawn-map-tile__front";
+  front.src = tile.dataset.faceSource;
+  front.alt = "";
+  inner.append(back, front);
+  drawnTile.append(inner);
+
+  clearTileChoice(false);
+  tile.hidden = true;
+  boardSurface.append(drawnTile);
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const revealTimer = setTimeout(() => {
+    tileRevealTimers.delete(tile);
+    drawnTile.remove();
+    pendingRouteId = null;
+    updateRouteAvailability();
+    hopPawnAlongRoute(routeId, true);
+  }, reducedMotion ? 1800 : 4650);
+
+  tileRevealTimers.set(tile, revealTimer);
+}
+
+boardSurface.addEventListener("click", (event) => {
+  const tile = event.target.closest(".map-tile.is-route-choice");
+  if (!tile) {
+    return;
+  }
+
+  event.preventDefault();
+  event.stopPropagation();
+  collectRouteTile(tile);
+});
+
+boardSurface.addEventListener("keydown", (event) => {
+  const tile = event.target.closest(".map-tile.is-route-choice");
+  if (!tile || (event.key !== "Enter" && event.key !== " ")) {
+    return;
+  }
+
+  event.preventDefault();
+  collectRouteTile(tile);
+});
+
 function setPathDrawingMode(enabled) {
+  if (enabled && pendingRouteId !== null) {
+    clearTileChoice();
+  }
+
   isPathDrawingMode = enabled;
   isDrawingGuideLine = false;
   activeGuideStroke = null;
@@ -669,7 +1087,7 @@ function formatGuideCoordinates() {
       );
       return `Line ${index + 1}: ${commands.join(" ")}`;
     })
-    .join("\n");
+    .join(" ");
 }
 
 function updateGuideStroke(stroke) {
@@ -810,20 +1228,26 @@ pathCopyButton.addEventListener("click", async () => {
 
 function playTilePlacementAnimation() {
   const tiles = [...boardSurface.querySelectorAll(".map-tile")];
+  const pawns = [...boardPawns.querySelectorAll(".sliding-pawn:not([hidden])")];
   const staggerMs = 130;
   const animationMs = 850;
+  const tileSequenceDuration = Math.max(0, tiles.length - 1) * staggerMs;
 
   clearTimeout(tilePlacementTimer);
   boardSurface.classList.remove("is-placing-tiles");
   tiles.forEach((tile, index) => {
     tile.style.setProperty("--tile-delay", `${index * staggerMs}ms`);
   });
+  pawns.forEach((pawn, index) => {
+    const delay = tileSequenceDuration * (index + 1) / (pawns.length + 1);
+    pawn.style.setProperty("--pawn-placement-delay", `${Math.round(delay)}ms`);
+  });
 
   void boardSurface.offsetWidth;
   boardSurface.classList.add("is-placing-tiles");
   tilePlacementTimer = setTimeout(() => {
     boardSurface.classList.remove("is-placing-tiles");
-  }, animationMs + Math.max(0, tiles.length - 1) * staggerMs + 100);
+  }, animationMs + tileSequenceDuration + 100);
 }
 
 newGameButton.addEventListener("click", () => {
@@ -860,6 +1284,8 @@ boardStageBack.addEventListener("click", () => {
     "is-waiting-for-deck",
     "is-waiting-for-tiles",
   );
+  clearTileChoice();
+  cancelTileRevealTimers();
   setPathDrawingMode(false);
   gameBoard.classList.remove("is-static-view");
   gameBoard.hidden = true;
@@ -876,27 +1302,44 @@ boardStageBack.addEventListener("click", () => {
 viewBoardButton.addEventListener("click", () => showGameBoard(true, "welcome"));
 viewBoardStaticButton.addEventListener("click", () => showGameBoard(false, "welcome"));
 
+function stepDeckSize(direction) {
+  const currentValue = Number(deckSizeInput.value);
+  const nextValue = Math.min(
+    seasonDeckAnimation.maximumCardsPerSeason,
+    Math.max(
+      seasonDeckAnimation.minimumCardsPerSeason,
+      (Number.isFinite(currentValue) ? currentValue : seasonDeckAnimation.minimumCardsPerSeason) + direction,
+    ),
+  );
+  deckSizeInput.value = String(nextValue);
+  deckSizeInput.dispatchEvent(new Event("input", { bubbles: true }));
+}
+
+deckSizeIncrease.addEventListener("click", () => stepDeckSize(1));
+deckSizeDecrease.addEventListener("click", () => stepDeckSize(-1));
+
 deckSizeInput.addEventListener("input", () => {
   deckSizeInput.removeAttribute("aria-invalid");
   deckSizeError.textContent = "";
+  updateDeckSizeSummary(Number(deckSizeInput.value));
 });
 
 deckSizeForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  const cardCount = Number(deckSizeInput.value);
+  const cardsPerSeason = Number(deckSizeInput.value);
 
   if (
-    !Number.isInteger(cardCount)
-    || cardCount < seasonDeckAnimation.minimumCards
-    || cardCount > seasonDeckAnimation.maximumCards
+    !Number.isInteger(cardsPerSeason)
+    || cardsPerSeason < seasonDeckAnimation.minimumCardsPerSeason
+    || cardsPerSeason > seasonDeckAnimation.maximumCardsPerSeason
   ) {
     deckSizeInput.setAttribute("aria-invalid", "true");
-    deckSizeError.textContent = `Enter a whole number from ${seasonDeckAnimation.minimumCards} to ${seasonDeckAnimation.maximumCards}.`;
+    deckSizeError.textContent = `Enter a whole number from ${seasonDeckAnimation.minimumCardsPerSeason} to ${seasonDeckAnimation.maximumCardsPerSeason}.`;
     deckSizeInput.focus();
     return;
   }
 
-  setSeasonCardCount(cardCount, false);
+  setSeasonCardCount(cardsPerSeason * seasonDeckAnimation.seasonCount, false);
   deckSizePicker.hidden = true;
   tokenPicker.hidden = false;
   document.querySelector(".token-option").focus();
@@ -926,7 +1369,17 @@ backButton.addEventListener("click", () => {
 
 continueButton.addEventListener("click", () => showGameBoard(true, "profession"));
 
+function isInteractiveBoardTarget(target) {
+  return target instanceof Element && Boolean(target.closest(
+    "button, [role='button'], .saved-path-area, .map-tile",
+  ));
+}
+
 boardCanvas.addEventListener("dblclick", (event) => {
+  if (isInteractiveBoardTarget(event.target)) {
+    return;
+  }
+
   event.preventDefault();
 
   if (boardScale > 1) {
@@ -944,7 +1397,7 @@ boardCanvas.addEventListener("dblclick", (event) => {
 });
 
 boardCanvas.addEventListener("pointerdown", (event) => {
-  if (boardScale === 1 || event.button !== 0) {
+  if (boardScale === 1 || event.button !== 0 || isInteractiveBoardTarget(event.target)) {
     return;
   }
 
@@ -992,6 +1445,8 @@ window.addEventListener("resize", () => {
 const pageParameters = new URLSearchParams(window.location.search);
 const cardCountFromUrl = pageParameters.get("cards");
 const initialCardCount = renderSeasonDeck(cardCountFromUrl ?? seasonDeck.dataset.cardCount);
-deckSizeInput.value = String(initialCardCount);
+const initialCardsPerSeason = initialCardCount / seasonDeckAnimation.seasonCount;
+deckSizeInput.value = String(initialCardsPerSeason);
+updateDeckSizeSummary(initialCardsPerSeason);
 renderSavedPathHighlights();
 renderProfession();
