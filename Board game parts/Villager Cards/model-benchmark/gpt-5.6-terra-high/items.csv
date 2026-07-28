@@ -1,0 +1,2 @@
+source,output,name,description,needs_review,dimensions,format,byte_size,crop,rotation,review_reason
+C:\Users\Joga\Music\Darbalaukis\Agentas\Stardew Valley\Board game parts\Villager Cards\20260728_095027.jpg,C:\Users\Joga\Music\Darbalaukis\Agentas\Stardew Valley\Board game parts\Villager Cards\model-benchmark\gpt-5.6-terra-high\villagers.webp,VILLAGERS,,True,1021x1440,WEBP,1968258,"(838,240)-(3270,1965)",90° clockwise,"The source is a single VILLAGERS card back, not an individual villager card; no complete printed description is visible."

@@ -1,0 +1,38 @@
+[
+  {
+    "source": "Stardew Valley/Board game parts/Villager Cards/20260728_095027.jpg",
+    "output": "villagers.webp",
+    "name": "VILLAGERS",
+    "description": "",
+    "needs_review": true,
+    "review_reason": "Source is the VILLAGERS card back; no villager name or description is printed.",
+    "dimensions": {
+      "width": 1500,
+      "height": 2390
+    },
+    "format": "WEBP",
+    "byte_size": 4827706,
+    "crop": {
+      "quad_source_px": [
+        [
+          120.0,
+          850.0
+        ],
+        [
+          1620.0,
+          850.0
+        ],
+        [
+          1630.0,
+          3240.0
+        ],
+        [
+          120.0,
+          3240.0
+        ]
+      ],
+      "method": "perspective"
+    },
+    "rotation": "90 degrees clockwise"
+  }
+]

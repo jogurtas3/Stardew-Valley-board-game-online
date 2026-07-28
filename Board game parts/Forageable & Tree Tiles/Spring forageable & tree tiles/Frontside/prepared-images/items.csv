@@ -1,13 +1,13 @@
-source,output,name,description,needs_review,review_reason,dimensions,format,byte_size,crop,rotation
-20260727_101132.jpg,horseradish.webp,Horseradish,,False,,1405x977,WEBP,870446,"[376,1320,1906,3008]",0
-20260727_101141.jpg,wood.webp,Wood,,False,,1424x1492,WEBP,1590732,"[0,1409,2084,4624]",0
-20260727_101200.jpg,daffodil.webp,Daffodil,,False,,1316x1396,WEBP,1449048,"[0,1532,2084,4624]",0
-20260727_101227.jpg,daffodil-2.webp,Daffodil,,False,,1440x1524,WEBP,1602612,"[218,1321,1862,3722]",0
-20260727_101244.jpg,fiber.webp,Fiber,,False,,1593x1666,WEBP,2114634,"[0,1240,2084,4624]",0
-20260727_101256.jpg,stone.webp,Stone,,False,,1552x1632,WEBP,1610980,"[0,1399,2084,4624]",0
-20260727_101308.jpg,leek.webp,Leek,,False,,1491x1591,WEBP,1529278,"[0,1308,2084,4624]",0
-20260727_101317.jpg,leek-2.webp,Leek,,False,,1587x1673,WEBP,2236418,"[0,1443,2084,4624]",0
-20260727_101330.jpg,horseradish-2.webp,Horseradish,,False,,1265x897,WEBP,656550,"[168,1067,1921,2897]",0
-20260727_101345.jpg,horseradish-3.webp,Horseradish,,False,,1496x1573,WEBP,2294736,"[0,1329,2084,4624]",0
-20260727_101541.jpg,stone-2.webp,Stone,,False,,1431x1508,WEBP,1330474,"[0,1476,2084,4000]",0
-20260727_101552.jpg,daffodil-3.webp,Daffodil,,False,,1531x1613,WEBP,1374370,"[0,0,2084,3234]",0
+source,output,name,description,needs_review,review_reason,corner_style,master,variants,dimensions,format,byte_size,crop,rotation
+20260727_101132.jpg,horseradish.webp,Horseradish,,false,,rounded,horseradish.webp,"{""480"": ""horseradish-480.webp"", ""960"": ""horseradish-960.webp""}",1405x977,WEBP,870446,"[376,1320,1906,3008]",0
+20260727_101141.jpg,wood.webp,Wood,,false,,rounded,wood.webp,"{""480"": ""wood-480.webp"", ""960"": ""wood-960.webp""}",1424x1492,WEBP,1590732,"[0,1409,2084,4624]",0
+20260727_101200.jpg,daffodil.webp,Daffodil,,false,,rounded,daffodil.webp,"{""480"": ""daffodil-480.webp"", ""960"": ""daffodil-960.webp""}",1316x1396,WEBP,1449048,"[0,1532,2084,4624]",0
+20260727_101227.jpg,daffodil-2.webp,Daffodil,,false,,rounded,daffodil-2.webp,"{""480"": ""daffodil-2-480.webp"", ""960"": ""daffodil-2-960.webp"", ""1440"": ""daffodil-2-1440.webp""}",1440x1524,WEBP,1602612,"[218,1321,1862,3722]",0
+20260727_101244.jpg,fiber.webp,Fiber,,false,,rounded,fiber.webp,"{""480"": ""fiber-480.webp"", ""960"": ""fiber-960.webp"", ""1440"": ""fiber-1440.webp""}",1593x1666,WEBP,2114634,"[0,1240,2084,4624]",0
+20260727_101256.jpg,stone.webp,Stone,,false,,rounded,stone.webp,"{""480"": ""stone-480.webp"", ""960"": ""stone-960.webp"", ""1440"": ""stone-1440.webp""}",1552x1632,WEBP,1610980,"[0,1399,2084,4624]",0
+20260727_101308.jpg,leek.webp,Leek,,false,,rounded,leek.webp,"{""480"": ""leek-480.webp"", ""960"": ""leek-960.webp"", ""1440"": ""leek-1440.webp""}",1491x1591,WEBP,1529278,"[0,1308,2084,4624]",0
+20260727_101317.jpg,leek-2.webp,Leek,,false,,rounded,leek-2.webp,"{""480"": ""leek-2-480.webp"", ""960"": ""leek-2-960.webp"", ""1440"": ""leek-2-1440.webp""}",1587x1673,WEBP,2236418,"[0,1443,2084,4624]",0
+20260727_101330.jpg,horseradish-2.webp,Horseradish,,false,,rounded,horseradish-2.webp,"{""480"": ""horseradish-2-480.webp"", ""960"": ""horseradish-2-960.webp""}",1265x897,WEBP,656550,"[168,1067,1921,2897]",0
+20260727_101345.jpg,horseradish-3.webp,Horseradish,,false,,rounded,horseradish-3.webp,"{""480"": ""horseradish-3-480.webp"", ""960"": ""horseradish-3-960.webp"", ""1440"": ""horseradish-3-1440.webp""}",1496x1573,WEBP,2294736,"[0,1329,2084,4624]",0
+20260727_101541.jpg,stone-2.webp,Stone,,false,,rounded,stone-2.webp,"{""480"": ""stone-2-480.webp"", ""960"": ""stone-2-960.webp""}",1431x1508,WEBP,1330474,"[0,1476,2084,4000]",0
+20260727_101552.jpg,daffodil-3.webp,Daffodil,,false,,rounded,daffodil-3.webp,"{""480"": ""daffodil-3-480.webp"", ""960"": ""daffodil-3-960.webp"", ""1440"": ""daffodil-3-1440.webp""}",1531x1613,WEBP,1374370,"[0,0,2084,3234]",0

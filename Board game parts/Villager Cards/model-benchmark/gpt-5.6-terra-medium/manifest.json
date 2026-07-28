@@ -1,0 +1,85 @@
+{
+  "source": "Stardew Valley/Board game parts/Villager Cards/20260728_095027.jpg",
+  "outputs": [
+    {
+      "output": "Stardew Valley/Board game parts/Villager Cards/model-benchmark/gpt-5.6-terra-medium\\villager-card.webp",
+      "format": "WEBP",
+      "dimensions": [
+        2100,
+        1500
+      ],
+      "bytes": 4248244,
+      "mode": "RGBA"
+    },
+    {
+      "output": "Stardew Valley/Board game parts/Villager Cards/model-benchmark/gpt-5.6-terra-medium\\villager-card-480.webp",
+      "format": "WEBP",
+      "dimensions": [
+        480,
+        343
+      ],
+      "bytes": 225302,
+      "mode": "RGBA"
+    },
+    {
+      "output": "Stardew Valley/Board game parts/Villager Cards/model-benchmark/gpt-5.6-terra-medium\\villager-card-960.webp",
+      "format": "WEBP",
+      "dimensions": [
+        960,
+        686
+      ],
+      "bytes": 961310,
+      "mode": "RGBA"
+    },
+    {
+      "output": "Stardew Valley/Board game parts/Villager Cards/model-benchmark/gpt-5.6-terra-medium\\villager-card-1440.webp",
+      "format": "WEBP",
+      "dimensions": [
+        1440,
+        1029
+      ],
+      "bytes": 2195330,
+      "mode": "RGBA"
+    }
+  ],
+  "transform": {
+    "perspective_corners_source_px": [
+      [
+        735,
+        216
+      ],
+      [
+        2808,
+        211
+      ],
+      [
+        2825,
+        1698
+      ],
+      [
+        748,
+        1702
+      ]
+    ],
+    "destination_px": [
+      2100,
+      1500
+    ],
+    "crop": "true card boundary; external black photo background removed",
+    "perspective": "four-point projective warp",
+    "rotation": "straightened by corner alignment"
+  },
+  "corners": {
+    "decision": "genuine rounded-corner card; alpha transparency outside rounded boundary",
+    "radius_master_px": 58
+  },
+  "validation": {
+    "decoded_all": true,
+    "nonempty": true,
+    "variants_non_upscaled": true,
+    "source_untouched": true
+  },
+  "uncertainties": [
+    "Exact subpixel outer-boundary location and corner radius estimated from small preview; pixel-perfect edge review recommended."
+  ]
+}

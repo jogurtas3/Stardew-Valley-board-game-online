@@ -1,0 +1,129 @@
+{
+  "processing_settings_version": "card-straight-edge-homography-soft-roundrect-v2",
+  "source_relative_path": "References/20260728_103326.jpg",
+  "source_sha256": "e6d81315216ec1787de82de718a4033e9c42d88abc8fc24589aa29dbaa835e2d",
+  "source_dimensions": [
+    4624,
+    2084
+  ],
+  "exif_orientation": 6,
+  "coordinate_space": "exif-transposed-2084x4624",
+  "edge_detection": {
+    "signal": "Gaussian(sigma=2) of R-B, persistent crossing",
+    "threshold": 10,
+    "straight_segment_sampling": "middle spans only; corner arcs excluded",
+    "lines": {
+      "left": {
+        "slope": 0.013073674242998691,
+        "intercept": 161.18596369614787,
+        "inliers": 193,
+        "samples": 225,
+        "residual_std_px": 1.66627446440535
+      },
+      "right": {
+        "slope": 0.0004102138643064626,
+        "intercept": 1906.5972793756143,
+        "inliers": 225,
+        "samples": 225,
+        "residual_std_px": 1.2248773653935647
+      },
+      "top": {
+        "slope": -0.010911373838837127,
+        "intercept": 762.2599637020901,
+        "inliers": 150,
+        "samples": 150,
+        "residual_std_px": 0.7326807257418743
+      },
+      "bottom": {
+        "slope": -0.010412462776123446,
+        "intercept": 3153.5047693971565,
+        "inliers": 150,
+        "samples": 150,
+        "residual_std_px": 1.4744743915113039
+      }
+    }
+  },
+  "corners_tl_tr_br_bl": [
+    [
+      171.12709045410156,
+      760.3927612304688
+    ],
+    [
+      1906.9014892578125,
+      741.4530639648438
+    ],
+    [
+      1907.8826904296875,
+      3133.638916015625
+    ],
+    [
+      202.3863067626953,
+      3151.3974609375
+    ]
+  ],
+  "orientation": "portrait-upright",
+  "perspective_transform": [
+    [
+      0.9896966024819184,
+      -0.013113101986959226,
+      -135.52470399670196
+    ],
+    [
+      0.01070824349447786,
+      0.9809265804533088,
+      -723.8538534381595
+    ],
+    [
+      1.282733759872977e-07,
+      -7.257139847371991e-06,
+      1.0
+    ]
+  ],
+  "safety_margin_px": 24,
+  "canonical_aspect_ratio": 0.7193028319375427,
+  "raw_detected_aspect_ratio": 0.7194610238075256,
+  "aspect_deviation_percent": 0.02199238804005965,
+  "ratio_reanalysis": null,
+  "output_dimensions": [
+    1728,
+    2402
+  ],
+  "stable_output_id": "villager-demetrius",
+  "output_relative_path": "Prepared/villager-demetrius.png",
+  "output_sha256": "75d9db2a1b16391e1f41bbba842dfc2849d99ee62489c20bf3ce98ddab3dc85d",
+  "alpha_settings": {
+    "method": "analytic canonical rounded-rectangle silhouette, separate from homography",
+    "radius_px": 111.0,
+    "supersampling": 4,
+    "soft_coverage": true
+  },
+  "validation": {
+    "decode": true,
+    "rgba": true,
+    "dimensions": true,
+    "orientation": true,
+    "geometry": {
+      "adjacent_angles_deg": [
+        90.0,
+        90.0,
+        90.0,
+        90.0
+      ],
+      "max_right_angle_error_deg": 0.0,
+      "opposite_parallel_error_deg": [
+        0.0,
+        0.0
+      ],
+      "max_axis_error_deg": 0.0
+    },
+    "opaque_background_outside_silhouette": false,
+    "numeric_status": "pass",
+    "visual_status": "pass-contact-sheet-reviewed",
+    "visual_checks": {
+      "complete_edges_and_corners": true,
+      "photography_background_removed": true,
+      "upright": true,
+      "transparency_outside_physical_boundary_only": true
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "outputs": [
+    "C:\\Users\\Joga\\Music\\Darbalaukis\\Agentas\\Stardew Valley\\Board game parts\\Villager Cards\\model-benchmark\\gpt-5.4-mini-low\\villagers.webp",
+    "C:\\Users\\Joga\\Music\\Darbalaukis\\Agentas\\Stardew Valley\\Board game parts\\Villager Cards\\model-benchmark\\gpt-5.4-mini-low\\villagers-1440.webp",
+    "C:\\Users\\Joga\\Music\\Darbalaukis\\Agentas\\Stardew Valley\\Board game parts\\Villager Cards\\model-benchmark\\gpt-5.4-mini-low\\villagers-960.webp",
+    "C:\\Users\\Joga\\Music\\Darbalaukis\\Agentas\\Stardew Valley\\Board game parts\\Villager Cards\\model-benchmark\\gpt-5.4-mini-low\\villagers-480.webp"
+  ],
+  "master_dimensions": [
+    1719,
+    2372
+  ],
+  "formats": [
+    "WEBP"
+  ],
+  "crop_rotation": "perspective quadrilateral original px: [[841,245],[3214,240],[3237,1945],[874,1964]]; external black photography background removed; 90 degrees clockwise to upright vertical",
+  "review": {
+    "needs_review": true,
+    "reason": "The image shows a VILLAGERS component/box panel, not a clearly identifiable individual villager card; no villager name or complete printed description is visible."
+  },
+  "count": 1
+}

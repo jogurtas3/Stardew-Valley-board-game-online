@@ -1,0 +1,17 @@
+{
+  "expected": {
+    "format": "JPEG",
+    "mode": "RGB",
+    "width": 4624,
+    "height": 2084,
+    "bytes": 4214095
+  },
+  "actual": {
+    "format": "JPEG",
+    "mode": "RGB",
+    "width": 4624,
+    "height": 2084,
+    "bytes": 4214095
+  },
+  "parent_metadata_matched": true
+}

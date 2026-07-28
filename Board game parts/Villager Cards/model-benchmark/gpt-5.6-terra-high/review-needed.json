@@ -1,0 +1,10 @@
+[
+  {
+    "source": "C:\\Users\\Joga\\Music\\Darbalaukis\\Agentas\\Stardew Valley\\Board game parts\\Villager Cards\\20260728_095027.jpg",
+    "output": "C:\\Users\\Joga\\Music\\Darbalaukis\\Agentas\\Stardew Valley\\Board game parts\\Villager Cards\\model-benchmark\\gpt-5.6-terra-high\\villagers.webp",
+    "preliminary_name": "VILLAGERS",
+    "preliminary_description": "",
+    "review_reason": "The source is a single VILLAGERS card back, not an individual villager card; no complete printed description is visible.",
+    "text_crop": "C:\\Users\\Joga\\Music\\Darbalaukis\\Agentas\\Stardew Valley\\Board game parts\\Villager Cards\\model-benchmark\\gpt-5.6-terra-high\\review-text-crop.jpg"
+  }
+]

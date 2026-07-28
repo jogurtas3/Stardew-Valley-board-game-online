@@ -1,0 +1,129 @@
+{
+  "processing_settings_version": "card-straight-edge-homography-soft-roundrect-v2",
+  "source_relative_path": "References/20260728_103320.jpg",
+  "source_sha256": "ab7c5775034c9cae0288f37cd6df69b96760f7821d1983f61bebdb51588e1155",
+  "source_dimensions": [
+    4624,
+    2084
+  ],
+  "exif_orientation": 6,
+  "coordinate_space": "exif-transposed-2084x4624",
+  "edge_detection": {
+    "signal": "Gaussian(sigma=2) of R-B, persistent crossing",
+    "threshold": 10,
+    "straight_segment_sampling": "middle spans only; corner arcs excluded",
+    "lines": {
+      "left": {
+        "slope": 0.0015116053270820948,
+        "intercept": 216.2715919995203,
+        "inliers": 192,
+        "samples": 225,
+        "residual_std_px": 1.3342642301551795
+      },
+      "right": {
+        "slope": -0.011486778901828483,
+        "intercept": 1956.7863809893963,
+        "inliers": 224,
+        "samples": 225,
+        "residual_std_px": 1.1695939714167933
+      },
+      "top": {
+        "slope": 0.005793813058358369,
+        "intercept": 727.0530048742903,
+        "inliers": 150,
+        "samples": 150,
+        "residual_std_px": 0.9340639962212137
+      },
+      "bottom": {
+        "slope": 0.0022252100093334624,
+        "intercept": 3118.3190969969023,
+        "inliers": 150,
+        "samples": 150,
+        "residual_std_px": 0.8372543302943617
+      }
+    }
+  },
+  "corners_tl_tr_br_bl": [
+    [
+      217.3725128173828,
+      728.3124389648438
+    ],
+    [
+      1948.30517578125,
+      738.3411254882812
+    ],
+    [
+      1920.9178466796875,
+      3122.593505859375
+    ],
+    [
+      220.9860076904297,
+      3118.810791015625
+    ]
+  ],
+  "orientation": "portrait-upright",
+  "perspective_transform": [
+    [
+      0.9894027889746193,
+      -0.0016747674508794086,
+      -189.98719423696085
+    ],
+    [
+      -0.005716580195704193,
+      0.9805228539035893,
+      -689.0223415613
+    ],
+    [
+      -1.4410015183744058e-06,
+      -7.463610021278763e-06,
+      1.0
+    ]
+  ],
+  "safety_margin_px": 24,
+  "canonical_aspect_ratio": 0.7193028319375427,
+  "raw_detected_aspect_ratio": 0.7185261249542236,
+  "aspect_deviation_percent": -0.10798052625858867,
+  "ratio_reanalysis": null,
+  "output_dimensions": [
+    1728,
+    2402
+  ],
+  "stable_output_id": "villager-harvey",
+  "output_relative_path": "Prepared/villager-harvey.png",
+  "output_sha256": "e224bf168ded1887778cb926825e73d444f2a94ddae471e43cedc09538a39b7d",
+  "alpha_settings": {
+    "method": "analytic canonical rounded-rectangle silhouette, separate from homography",
+    "radius_px": 111.0,
+    "supersampling": 4,
+    "soft_coverage": true
+  },
+  "validation": {
+    "decode": true,
+    "rgba": true,
+    "dimensions": true,
+    "orientation": true,
+    "geometry": {
+      "adjacent_angles_deg": [
+        90.0,
+        90.0,
+        90.0,
+        90.0
+      ],
+      "max_right_angle_error_deg": 0.0,
+      "opposite_parallel_error_deg": [
+        0.0,
+        0.0
+      ],
+      "max_axis_error_deg": 0.0
+    },
+    "opaque_background_outside_silhouette": false,
+    "numeric_status": "pass",
+    "visual_status": "pass-contact-sheet-reviewed",
+    "visual_checks": {
+      "complete_edges_and_corners": true,
+      "photography_background_removed": true,
+      "upright": true,
+      "transparency_outside_physical_boundary_only": true
+    }
+  }
+}

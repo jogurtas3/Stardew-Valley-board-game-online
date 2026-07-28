@@ -1,0 +1,129 @@
+{
+  "processing_settings_version": "card-straight-edge-homography-soft-roundrect-v2",
+  "source_relative_path": "References/20260728_103105.jpg",
+  "source_sha256": "fd6b3165252e29be9721149a678c6dbf732c91b06e9a3b623cac9fd58ba5db45",
+  "source_dimensions": [
+    4624,
+    2084
+  ],
+  "exif_orientation": 6,
+  "coordinate_space": "exif-transposed-2084x4624",
+  "edge_detection": {
+    "signal": "Gaussian(sigma=2) of R-B, persistent crossing",
+    "threshold": 10,
+    "straight_segment_sampling": "middle spans only; corner arcs excluded",
+    "lines": {
+      "left": {
+        "slope": 0.008835428559728858,
+        "intercept": 143.7220989739704,
+        "inliers": 192,
+        "samples": 225,
+        "residual_std_px": 3.15693183566907
+      },
+      "right": {
+        "slope": -0.0017832718151979427,
+        "intercept": 1883.8130946278277,
+        "inliers": 219,
+        "samples": 225,
+        "residual_std_px": 1.2243877193083932
+      },
+      "top": {
+        "slope": -0.002539446197608792,
+        "intercept": 743.5295940560317,
+        "inliers": 150,
+        "samples": 150,
+        "residual_std_px": 0.9399302333436991
+      },
+      "bottom": {
+        "slope": -0.0047041446771049445,
+        "intercept": 3134.2291338787027,
+        "inliers": 149,
+        "samples": 150,
+        "residual_std_px": 1.2081799744912127
+      }
+    }
+  },
+  "corners_tl_tr_br_bl": [
+    [
+      150.2881317138672,
+      743.14794921875
+    ],
+    [
+      1882.4957275390625,
+      738.7490844726562
+    ],
+    [
+      1878.2396240234375,
+      3125.3935546875
+    ],
+    [
+      171.4072265625,
+      3133.4228515625
+    ]
+  ],
+  "orientation": "portrait-upright",
+  "perspective_transform": [
+    [
+      0.9907406043854372,
+      -0.008900052613650228,
+      -118.39448641683423
+    ],
+    [
+      0.0024796840291536663,
+      0.9849816055242154,
+      -708.4717150619472
+    ],
+    [
+      -9.168611472847641e-07,
+      -6.093491562131072e-06,
+      1.0
+    ]
+  ],
+  "safety_margin_px": 24,
+  "canonical_aspect_ratio": 0.7193028319375427,
+  "raw_detected_aspect_ratio": 0.7199189066886902,
+  "aspect_deviation_percent": 0.08564887051647485,
+  "ratio_reanalysis": null,
+  "output_dimensions": [
+    1728,
+    2402
+  ],
+  "stable_output_id": "villager-maru",
+  "output_relative_path": "Prepared/villager-maru.png",
+  "output_sha256": "ff2f75bb0673764d2dded5cafb8e1b73e945554fe830341820b61516b4ce3ea0",
+  "alpha_settings": {
+    "method": "analytic canonical rounded-rectangle silhouette, separate from homography",
+    "radius_px": 111.0,
+    "supersampling": 4,
+    "soft_coverage": true
+  },
+  "validation": {
+    "decode": true,
+    "rgba": true,
+    "dimensions": true,
+    "orientation": true,
+    "geometry": {
+      "adjacent_angles_deg": [
+        90.0,
+        90.0,
+        90.0,
+        90.0
+      ],
+      "max_right_angle_error_deg": 0.0,
+      "opposite_parallel_error_deg": [
+        0.0,
+        0.0
+      ],
+      "max_axis_error_deg": 0.0
+    },
+    "opaque_background_outside_silhouette": false,
+    "numeric_status": "pass",
+    "visual_status": "pass-contact-sheet-reviewed",
+    "visual_checks": {
+      "complete_edges_and_corners": true,
+      "photography_background_removed": true,
+      "upright": true,
+      "transparency_outside_physical_boundary_only": true
+    }
+  }
+}

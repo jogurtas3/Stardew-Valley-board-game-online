@@ -1,0 +1,51 @@
+{
+  "source": "Stardew Valley/Board game parts/Villager Cards/20260728_095027.jpg",
+  "outputs": [
+    {
+      "output": "Stardew Valley/Board game parts/Villager Cards/model-benchmark/gpt-5.6-terra-low/villager-card-1440w.webp",
+      "format": "WEBP",
+      "dimensions": [
+        1440,
+        1957
+      ],
+      "bytes": 1283346
+    },
+    {
+      "output": "Stardew Valley/Board game parts/Villager Cards/model-benchmark/gpt-5.6-terra-low/villager-card-480w.webp",
+      "format": "WEBP",
+      "dimensions": [
+        480,
+        652
+      ],
+      "bytes": 89724
+    },
+    {
+      "output": "Stardew Valley/Board game parts/Villager Cards/model-benchmark/gpt-5.6-terra-low/villager-card-960w.webp",
+      "format": "WEBP",
+      "dimensions": [
+        960,
+        1304
+      ],
+      "bytes": 558798
+    },
+    {
+      "output": "Stardew Valley/Board game parts/Villager Cards/model-benchmark/gpt-5.6-terra-low/villager-card-master.webp",
+      "format": "WEBP",
+      "dimensions": [
+        1840,
+        2500
+      ],
+      "bytes": 2056518
+    }
+  ],
+  "crop_coordinates_px": {
+    "exif_transposed": [
+      120,
+      850,
+      1960,
+      3800
+    ]
+  },
+  "rotation": "EXIF orientation corrected; upright vertical",
+  "uncertainty": "boundary approximation; corners may need review"
+}

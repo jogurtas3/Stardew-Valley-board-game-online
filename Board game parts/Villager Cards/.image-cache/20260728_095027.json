@@ -1,0 +1,181 @@
+{
+  "processing_settings_version": "card-straight-edge-homography-soft-roundrect-v2",
+  "source_relative_path": "References/20260728_095027.jpg",
+  "source_sha256": "b4d95bf1e937b0d75dc95d85020073ccf12a1dc65edf5820b4512f702f8bf47c",
+  "source_dimensions": [
+    4624,
+    2084
+  ],
+  "exif_orientation": 6,
+  "coordinate_space": "exif-transposed-2084x4624",
+  "edge_detection": {
+    "signal": "Gaussian(sigma=2) of R-B, persistent crossing",
+    "threshold": 10,
+    "straight_segment_sampling": "middle spans only; corner arcs excluded",
+    "lines": {
+      "left": {
+        "slope": 0.0194154287821323,
+        "intercept": 101.38646447885938,
+        "inliers": 225,
+        "samples": 225,
+        "residual_std_px": 1.1921650317026953
+      },
+      "right": {
+        "slope": -0.00035556257901432034,
+        "intercept": 1846.7941470009832,
+        "inliers": 225,
+        "samples": 225,
+        "residual_std_px": 1.2736103314457192
+      },
+      "top": {
+        "slope": -0.016658295924263343,
+        "intercept": 861.1779108701124,
+        "inliers": 150,
+        "samples": 150,
+        "residual_std_px": 1.10488767629994
+      },
+      "bottom": {
+        "slope": -0.007033201475621348,
+        "intercept": 3239.8633954101656,
+        "inliers": 150,
+        "samples": 150,
+        "residual_std_px": 0.6384684389563405
+      }
+    }
+  },
+  "corners_tl_tr_br_bl": [
+    [
+      118.06841278076172,
+      859.2111206054688
+    ],
+    [
+      1846.4989013671875,
+      830.4183959960938
+    ],
+    [
+      1845.646728515625,
+      3226.882568359375
+    ],
+    [
+      164.26736450195312,
+      3238.7080078125
+    ]
+  ],
+  "orientation": "portrait-upright",
+  "perspective_transform": [
+    [
+      0.996519460634678,
+      -0.019619816427290795,
+      -77.02429413810557
+    ],
+    [
+      0.016284818222679416,
+      0.9718069793410783,
+      -813.134473946233
+    ],
+    [
+      3.816656187560146e-06,
+      -1.1405938298465074e-05,
+      1.0
+    ]
+  ],
+  "safety_margin_px": 24,
+  "canonical_aspect_ratio": 0.7193028319375427,
+  "raw_detected_aspect_ratio": 0.7139445543289185,
+  "aspect_deviation_percent": -0.744926527564338,
+  "ratio_reanalysis": {
+    "reason": "raw aspect deviation > 0.5%",
+    "alternate_detections": [
+      {
+        "threshold": 8,
+        "corners": [
+          [
+            115.3171615600586,
+            856.9119873046875
+          ],
+          [
+            1849.4881591796875,
+            829.2129516601562
+          ],
+          [
+            1846.84619140625,
+            3227.810791015625
+          ],
+          [
+            163.32962036132812,
+            3239.728515625
+          ]
+        ],
+        "raw_ratio": 0.7147685289382935,
+        "max_line_residual_px": 1.5780451134444882
+      },
+      {
+        "threshold": 12,
+        "corners": [
+          [
+            119.6816177368164,
+            860.8766479492188
+          ],
+          [
+            1844.255615234375,
+            831.59130859375
+          ],
+          [
+            1844.60400390625,
+            3225.975830078125
+          ],
+          [
+            165.31195068359375,
+            3238.012451171875
+          ]
+        ],
+        "raw_ratio": 0.7133670449256897,
+        "max_line_residual_px": 1.1184165714754528
+      }
+    ],
+    "max_corner_spread_px": 3.5854424014592285,
+    "accepted": true
+  },
+  "output_dimensions": [
+    1728,
+    2402
+  ],
+  "stable_output_id": "villager-card-back",
+  "output_relative_path": "Prepared/villager-card-back.png",
+  "output_sha256": "f3745a6553e49177c21f2cd726e25e6c8bc8bd4ba55c098a04f8b23673514996",
+  "alpha_settings": {
+    "method": "analytic canonical rounded-rectangle silhouette, separate from homography",
+    "radius_px": 111.0,
+    "supersampling": 4,
+    "soft_coverage": true
+  },
+  "validation": {
+    "decode": true,
+    "rgba": true,
+    "dimensions": true,
+    "orientation": true,
+    "geometry": {
+      "adjacent_angles_deg": [
+        90.0,
+        90.0,
+        90.0,
+        90.0
+      ],
+      "max_right_angle_error_deg": 0.0,
+      "opposite_parallel_error_deg": [
+        0.0,
+        0.0
+      ],
+      "max_axis_error_deg": 0.0
+    },
+    "opaque_background_outside_silhouette": false,
+    "numeric_status": "pass",
+    "visual_status": "pass-contact-sheet-reviewed",
+    "visual_checks": {
+      "complete_edges_and_corners": true,
+      "photography_background_removed": true,
+      "upright": true,
+      "transparency_outside_physical_boundary_only": true
+    }
+  }
+}

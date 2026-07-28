@@ -1,0 +1,2 @@
+source,output,name,description,needs_review,review_reason,dimensions,format,byte_size,crop,rotation
+Stardew Valley/Board game parts/Villager Cards/20260728_095027.jpg,Stardew Valley\Board game parts\Villager Cards\model-benchmark\gpt-5.6-luna-high\villagers.webp,VILLAGERS,,True,Visible face is the VILLAGERS card back; no villager name or description is printed.,1065x3720,WEBP,1909726,"quadrilateral [(360,386),(4080,386),(4080,1450),(360,1450)] -> 3720x1065",90 degrees counterclockwise

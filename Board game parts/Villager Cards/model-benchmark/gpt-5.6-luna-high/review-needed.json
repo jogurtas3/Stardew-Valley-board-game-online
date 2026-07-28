@@ -1,0 +1,10 @@
+[
+  {
+    "source": "Stardew Valley/Board game parts/Villager Cards/20260728_095027.jpg",
+    "output": "Stardew Valley/Board game parts/Villager Cards/model-benchmark/gpt-5.6-luna-high\\villagers.webp",
+    "preliminary_name": "VILLAGERS",
+    "preliminary_description": "",
+    "review_reason": "Visible face is the VILLAGERS card back; no villager name or description is printed.",
+    "text_crop": "Stardew Valley/Board game parts/Villager Cards/model-benchmark/gpt-5.6-luna-high\\review-villagers-text.webp"
+  }
+]

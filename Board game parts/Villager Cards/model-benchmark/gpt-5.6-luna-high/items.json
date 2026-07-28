@@ -1,0 +1,15 @@
+[
+  {
+    "source": "Stardew Valley/Board game parts/Villager Cards/20260728_095027.jpg",
+    "output": "Stardew Valley\\Board game parts\\Villager Cards\\model-benchmark\\gpt-5.6-luna-high\\villagers.webp",
+    "name": "VILLAGERS",
+    "description": "",
+    "needs_review": true,
+    "review_reason": "Visible face is the VILLAGERS card back; no villager name or description is printed.",
+    "dimensions": "1065x3720",
+    "format": "WEBP",
+    "byte_size": 1909726,
+    "crop": "quadrilateral [(360,386),(4080,386),(4080,1450),(360,1450)] -> 3720x1065",
+    "rotation": "90 degrees counterclockwise"
+  }
+]

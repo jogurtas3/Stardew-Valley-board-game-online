@@ -1,0 +1,129 @@
+{
+  "processing_settings_version": "card-straight-edge-homography-soft-roundrect-v2",
+  "source_relative_path": "References/20260728_103201.jpg",
+  "source_sha256": "874f4e94c7bb3fe00bdb122663488f9775947b42f5b74c8ff001935d95514db6",
+  "source_dimensions": [
+    4624,
+    2084
+  ],
+  "exif_orientation": 6,
+  "coordinate_space": "exif-transposed-2084x4624",
+  "edge_detection": {
+    "signal": "Gaussian(sigma=2) of R-B, persistent crossing",
+    "threshold": 10,
+    "straight_segment_sampling": "middle spans only; corner arcs excluded",
+    "lines": {
+      "left": {
+        "slope": 0.0009276351803748427,
+        "intercept": 196.33512350598073,
+        "inliers": 191,
+        "samples": 225,
+        "residual_std_px": 1.6241196000052216
+      },
+      "right": {
+        "slope": -0.01218210071639291,
+        "intercept": 1937.6663679941005,
+        "inliers": 225,
+        "samples": 225,
+        "residual_std_px": 1.9880763779593325
+      },
+      "top": {
+        "slope": 0.006418083964650737,
+        "intercept": 724.1949315284938,
+        "inliers": 149,
+        "samples": 150,
+        "residual_std_px": 0.7394770991762272
+      },
+      "bottom": {
+        "slope": 0.005665807369217018,
+        "intercept": 3112.1602321584637,
+        "inliers": 150,
+        "samples": 150,
+        "residual_std_px": 0.7575147867452192
+      }
+    }
+  },
+  "corners_tl_tr_br_bl": [
+    [
+      197.00808715820312,
+      725.4593505859375
+    ],
+    [
+      1928.693359375,
+      736.5734252929688
+    ],
+    [
+      1899.62255859375,
+      3122.923095703125
+    ],
+    [
+      199.22311401367188,
+      3113.2890625
+    ]
+  ],
+  "orientation": "portrait-upright",
+  "perspective_transform": [
+    [
+      0.9912542971664997,
+      -0.0011001955769515451,
+      -170.61928803642405
+    ],
+    [
+      -0.006308277334736581,
+      0.9817217466059995,
+      -687.0887613309765
+    ],
+    [
+      -2.6501471308336547e-07,
+      -7.527943000066511e-06,
+      1.0
+    ]
+  ],
+  "safety_margin_px": 24,
+  "canonical_aspect_ratio": 0.7193028319375427,
+  "raw_detected_aspect_ratio": 0.7188711166381836,
+  "aspect_deviation_percent": -0.06001857356744411,
+  "ratio_reanalysis": null,
+  "output_dimensions": [
+    1728,
+    2402
+  ],
+  "stable_output_id": "villager-dwarf",
+  "output_relative_path": "Prepared/villager-dwarf.png",
+  "output_sha256": "8ca5d5f735e83955dd907e5892e18f9abc79458f706a3f9928567d6e35c96dd5",
+  "alpha_settings": {
+    "method": "analytic canonical rounded-rectangle silhouette, separate from homography",
+    "radius_px": 111.0,
+    "supersampling": 4,
+    "soft_coverage": true
+  },
+  "validation": {
+    "decode": true,
+    "rgba": true,
+    "dimensions": true,
+    "orientation": true,
+    "geometry": {
+      "adjacent_angles_deg": [
+        90.0,
+        90.0,
+        90.0,
+        90.0
+      ],
+      "max_right_angle_error_deg": 0.0,
+      "opposite_parallel_error_deg": [
+        0.0,
+        0.0
+      ],
+      "max_axis_error_deg": 0.0
+    },
+    "opaque_background_outside_silhouette": false,
+    "numeric_status": "pass",
+    "visual_status": "pass-contact-sheet-reviewed",
+    "visual_checks": {
+      "complete_edges_and_corners": true,
+      "photography_background_removed": true,
+      "upright": true,
+      "transparency_outside_physical_boundary_only": true
+    }
+  }
+}

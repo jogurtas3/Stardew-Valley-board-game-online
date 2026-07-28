@@ -1,0 +1,10 @@
+[
+  {
+    "source": "C:/Users/Joga/Music/Darbalaukis/Agentas/Stardew Valley/Board game parts/Villager Cards/20260728_095027.jpg",
+    "output": "C:/Users/Joga/Music/Darbalaukis/Agentas/Stardew Valley/Board game parts/Villager Cards/model-benchmark/gpt-5.4-mini-medium\\villagers.webp",
+    "preliminary_name": "VILLAGERS",
+    "preliminary_description": "No printed description.",
+    "review_reason": "Villagers card back; no item-specific printed description is present.",
+    "text_crop": "C:/Users/Joga/Music/Darbalaukis/Agentas/Stardew Valley/Board game parts/Villager Cards/model-benchmark/gpt-5.4-mini-medium\\review-villagers-text.webp"
+  }
+]

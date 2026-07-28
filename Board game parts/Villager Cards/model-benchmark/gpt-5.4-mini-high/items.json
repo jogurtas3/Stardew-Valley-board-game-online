@@ -1,0 +1,14 @@
+[
+  {
+    "source": "C:\\Users\\Joga\\Music\\Darbalaukis\\Agentas\\Stardew Valley\\Board game parts\\Villager Cards\\20260728_095027.jpg",
+    "output": "C:\\Users\\Joga\\Music\\Darbalaukis\\Agentas\\Stardew Valley\\Board game parts\\Villager Cards\\model-benchmark\\gpt-5.4-mini-high\\villagers.webp",
+    "name": "VILLAGERS",
+    "description": "VILLAGERS",
+    "needs_review": false,
+    "dimensions": "1656x2351",
+    "format": "WebP",
+    "byte_size": 5201948,
+    "crop": "quad:(26,180)-(357,166)-(368,636)-(38,645); radius:60",
+    "rotation": 0
+  }
+]

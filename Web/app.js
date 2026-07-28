@@ -108,6 +108,7 @@ const boardSurface = document.querySelector("#board-surface");
 const boardImage = document.querySelector(".board-image");
 const seasonDeck = document.querySelector("#season-deck");
 const seasonDiscardPile = document.querySelector("#season-discard-pile");
+const villagerCard = document.querySelector("#villager-card");
 const savedPathHighlights = document.querySelector("#saved-path-highlights");
 const pathDrawingLayer = document.querySelector("#path-drawing-layer");
 const pathDrawingLines = document.querySelector("#path-drawing-lines");
@@ -767,6 +768,16 @@ function drawSeasonCard() {
 }
 
 seasonDeck.addEventListener("click", drawSeasonCard);
+
+villagerCard.addEventListener("click", () => {
+  villagerCard.classList.remove("is-viewing");
+  void villagerCard.offsetWidth;
+  villagerCard.classList.add("is-viewing");
+});
+
+villagerCard.addEventListener("animationend", () => {
+  villagerCard.classList.remove("is-viewing");
+});
 
 function pawnPositionFor(state, nodeId = state.node) {
   if (nodeId === "farm") {

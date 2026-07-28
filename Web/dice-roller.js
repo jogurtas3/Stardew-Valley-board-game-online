@@ -21,6 +21,8 @@
   };
 
   const FACE_CLASSES = ["front", "back", "right", "left", "top", "bottom"];
+  // Tas pats pradinis -13° / 24° kampas, išlaikant ridenimų Z/X/Y apsisukimų būseną.
+  const INITIAL_TRANSFORM = "rotateZ(1080deg) rotateX(1067deg) rotateY(1104deg)";
 
   const PARTICLES = {
     heart: ["#ff3045", "#ff7d8a", "#ffd0d4"],
@@ -70,12 +72,7 @@
       this.scenes = [...this.diceRow.querySelectorAll(".stardew-dice__scene")];
       this.cubes = this.scenes.map((scene) => scene.querySelector(".stardew-dice__cube"));
 
-      this.cubes.forEach((cube) => {
-        cube.style.transition = "none";
-        cube.style.transform = "rotateZ(1080deg) rotateX(1067deg) rotateY(1104deg)";
-        void cube.offsetWidth;
-        cube.style.removeProperty("transition");
-      });
+      this.resetPerspective();
 
       this.cubes.forEach((cube) => {
         cube.querySelectorAll(".stardew-dice__corner").forEach((corner) => {
@@ -133,7 +130,7 @@
           const image = cube.querySelector(`.stardew-dice__face--${faceClass} img`);
           image.src = type === "animal"
             ? `assets/animal-dice-${DICE.animal.faces[index]}.png?v=1`
-            : `assets/dice-${DICE.stardew.faces[index]}.png?v=3`;
+            : `assets/dice-${DICE.stardew.faces[index]}.png?v=4`;
           const rotation = type === "animal"
             ? DICE.animal.imageRotations[index]
             : faceClass === "bottom" ? 180 : 0;
@@ -143,9 +140,21 @@
       this.setCount(type === "animal" ? 3 : this.stardewCount);
     }
 
+    resetPerspective() {
+      this.rollNumber = 1;
+      this.cubes.forEach((cube) => {
+        cube.classList.remove("is-rolling");
+        cube.style.transition = "none";
+        cube.style.transform = INITIAL_TRANSFORM;
+        void cube.offsetWidth;
+        cube.style.removeProperty("transition");
+      });
+    }
+
     setCount(count) {
       if (this.rolling) return;
       this.count = this.type === "animal" ? 3 : Math.max(1, Math.min(3, count));
+      this.resetPerspective();
       if (this.type === "stardew") this.stardewCount = this.count;
       this.root.dataset.diceCount = String(this.count);
       this.scenes.forEach((scene, index) => {

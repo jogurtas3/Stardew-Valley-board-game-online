@@ -10,7 +10,13 @@
     "format": "WEBP",
     "byte_size": 870446,
     "crop": "[376,1320,1906,3008]",
-    "rotation": 0
+    "rotation": 0,
+    "corner_style": "rounded",
+    "master": "horseradish.webp",
+    "variants": {
+      "480": "horseradish-480.webp",
+      "960": "horseradish-960.webp"
+    }
   },
   {
     "source": "20260727_101141.jpg",
@@ -23,7 +29,13 @@
     "format": "WEBP",
     "byte_size": 1590732,
     "crop": "[0,1409,2084,4624]",
-    "rotation": 0
+    "rotation": 0,
+    "corner_style": "rounded",
+    "master": "wood.webp",
+    "variants": {
+      "480": "wood-480.webp",
+      "960": "wood-960.webp"
+    }
   },
   {
     "source": "20260727_101200.jpg",
@@ -36,7 +48,13 @@
     "format": "WEBP",
     "byte_size": 1449048,
     "crop": "[0,1532,2084,4624]",
-    "rotation": 0
+    "rotation": 0,
+    "corner_style": "rounded",
+    "master": "daffodil.webp",
+    "variants": {
+      "480": "daffodil-480.webp",
+      "960": "daffodil-960.webp"
+    }
   },
   {
     "source": "20260727_101227.jpg",
@@ -49,7 +67,14 @@
     "format": "WEBP",
     "byte_size": 1602612,
     "crop": "[218,1321,1862,3722]",
-    "rotation": 0
+    "rotation": 0,
+    "corner_style": "rounded",
+    "master": "daffodil-2.webp",
+    "variants": {
+      "480": "daffodil-2-480.webp",
+      "960": "daffodil-2-960.webp",
+      "1440": "daffodil-2-1440.webp"
+    }
   },
   {
     "source": "20260727_101244.jpg",
@@ -62,7 +87,14 @@
     "format": "WEBP",
     "byte_size": 2114634,
     "crop": "[0,1240,2084,4624]",
-    "rotation": 0
+    "rotation": 0,
+    "corner_style": "rounded",
+    "master": "fiber.webp",
+    "variants": {
+      "480": "fiber-480.webp",
+      "960": "fiber-960.webp",
+      "1440": "fiber-1440.webp"
+    }
   },
   {
     "source": "20260727_101256.jpg",
@@ -75,7 +107,14 @@
     "format": "WEBP",
     "byte_size": 1610980,
     "crop": "[0,1399,2084,4624]",
-    "rotation": 0
+    "rotation": 0,
+    "corner_style": "rounded",
+    "master": "stone.webp",
+    "variants": {
+      "480": "stone-480.webp",
+      "960": "stone-960.webp",
+      "1440": "stone-1440.webp"
+    }
   },
   {
     "source": "20260727_101308.jpg",
@@ -88,7 +127,14 @@
     "format": "WEBP",
     "byte_size": 1529278,
     "crop": "[0,1308,2084,4624]",
-    "rotation": 0
+    "rotation": 0,
+    "corner_style": "rounded",
+    "master": "leek.webp",
+    "variants": {
+      "480": "leek-480.webp",
+      "960": "leek-960.webp",
+      "1440": "leek-1440.webp"
+    }
   },
   {
     "source": "20260727_101317.jpg",
@@ -101,7 +147,14 @@
     "format": "WEBP",
     "byte_size": 2236418,
     "crop": "[0,1443,2084,4624]",
-    "rotation": 0
+    "rotation": 0,
+    "corner_style": "rounded",
+    "master": "leek-2.webp",
+    "variants": {
+      "480": "leek-2-480.webp",
+      "960": "leek-2-960.webp",
+      "1440": "leek-2-1440.webp"
+    }
   },
   {
     "source": "20260727_101330.jpg",
@@ -114,7 +167,13 @@
     "format": "WEBP",
     "byte_size": 656550,
     "crop": "[168,1067,1921,2897]",
-    "rotation": 0
+    "rotation": 0,
+    "corner_style": "rounded",
+    "master": "horseradish-2.webp",
+    "variants": {
+      "480": "horseradish-2-480.webp",
+      "960": "horseradish-2-960.webp"
+    }
   },
   {
     "source": "20260727_101345.jpg",
@@ -127,7 +186,14 @@
     "format": "WEBP",
     "byte_size": 2294736,
     "crop": "[0,1329,2084,4624]",
-    "rotation": 0
+    "rotation": 0,
+    "corner_style": "rounded",
+    "master": "horseradish-3.webp",
+    "variants": {
+      "480": "horseradish-3-480.webp",
+      "960": "horseradish-3-960.webp",
+      "1440": "horseradish-3-1440.webp"
+    }
   },
   {
     "source": "20260727_101541.jpg",
@@ -140,7 +206,13 @@
     "format": "WEBP",
     "byte_size": 1330474,
     "crop": "[0,1476,2084,4000]",
-    "rotation": 0
+    "rotation": 0,
+    "corner_style": "rounded",
+    "master": "stone-2.webp",
+    "variants": {
+      "480": "stone-2-480.webp",
+      "960": "stone-2-960.webp"
+    }
   },
   {
     "source": "20260727_101552.jpg",
@@ -153,6 +225,13 @@
     "format": "WEBP",
     "byte_size": 1374370,
     "crop": "[0,0,2084,3234]",
-    "rotation": 0
+    "rotation": 0,
+    "corner_style": "rounded",
+    "master": "daffodil-3.webp",
+    "variants": {
+      "480": "daffodil-3-480.webp",
+      "960": "daffodil-3-960.webp",
+      "1440": "daffodil-3-1440.webp"
+    }
   }
 ]

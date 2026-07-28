@@ -1,0 +1,55 @@
+{
+  "source": "Stardew Valley\\Board game parts\\Villager Cards\\20260728_095027.jpg",
+  "preview_coordinates": [
+    [
+      28,
+      185
+    ],
+    [
+      400,
+      181
+    ],
+    [
+      400,
+      700
+    ],
+    [
+      35,
+      700
+    ]
+  ],
+  "oriented_source_dimensions": [
+    2084,
+    4624
+  ],
+  "master_dimensions": [
+    1704,
+    2391
+  ],
+  "crop_original_oriented": [
+    [
+      129.47000122070312,
+      855.4400024414062
+    ],
+    [
+      1849.5999755859375,
+      836.9400024414062
+    ],
+    [
+      1849.5999755859375,
+      3236.800048828125
+    ],
+    [
+      161.83999633789062,
+      3236.800048828125
+    ]
+  ],
+  "perspective_corrected": true,
+  "rotation": "EXIF transpose (orientation 6)",
+  "outputs": [
+    "Stardew Valley\\Board game parts\\Villager Cards\\model-benchmark\\gpt-5.6-sol-minimal\\villagers-master.webp",
+    "Stardew Valley\\Board game parts\\Villager Cards\\model-benchmark\\gpt-5.6-sol-minimal\\villagers-480.webp",
+    "Stardew Valley\\Board game parts\\Villager Cards\\model-benchmark\\gpt-5.6-sol-minimal\\villagers-960.webp",
+    "Stardew Valley\\Board game parts\\Villager Cards\\model-benchmark\\gpt-5.6-sol-minimal\\villagers-1440.webp"
+  ]
+}

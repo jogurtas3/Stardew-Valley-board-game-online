@@ -1,0 +1,66 @@
+[
+  {
+    "source": "C:\\Users\\Joga\\Music\\Darbalaukis\\Agentas\\Stardew Valley\\Board game parts\\Villager Cards\\20260728_095027.jpg",
+    "output": "C:\\Users\\Joga\\Music\\Darbalaukis\\Agentas\\Stardew Valley\\Board game parts\\Villager Cards\\model-benchmark\\gpt-5.4-mini-low\\villagers.webp",
+    "name": "VILLAGERS",
+    "description": "",
+    "needs_review": true,
+    "review_reason": "The image shows a VILLAGERS component/box panel, not a clearly identifiable individual villager card; no villager name or complete printed description is visible.",
+    "dimensions": [
+      1719,
+      2372
+    ],
+    "format": "WEBP",
+    "byte_size": 5514706,
+    "crop": "perspective quadrilateral original px: [[841,245],[3214,240],[3237,1945],[874,1964]]; external black photography background removed",
+    "rotation": "90 degrees clockwise to upright vertical"
+  },
+  {
+    "source": "C:\\Users\\Joga\\Music\\Darbalaukis\\Agentas\\Stardew Valley\\Board game parts\\Villager Cards\\20260728_095027.jpg",
+    "output": "C:\\Users\\Joga\\Music\\Darbalaukis\\Agentas\\Stardew Valley\\Board game parts\\Villager Cards\\model-benchmark\\gpt-5.4-mini-low\\villagers-1440.webp",
+    "name": "VILLAGERS",
+    "description": "",
+    "needs_review": true,
+    "review_reason": "The image shows a VILLAGERS component/box panel, not a clearly identifiable individual villager card; no villager name or complete printed description is visible.",
+    "dimensions": [
+      1440,
+      1987
+    ],
+    "format": "WEBP",
+    "byte_size": 4100812,
+    "crop": "perspective quadrilateral original px: [[841,245],[3214,240],[3237,1945],[874,1964]]; external black photography background removed",
+    "rotation": "90 degrees clockwise to upright vertical"
+  },
+  {
+    "source": "C:\\Users\\Joga\\Music\\Darbalaukis\\Agentas\\Stardew Valley\\Board game parts\\Villager Cards\\20260728_095027.jpg",
+    "output": "C:\\Users\\Joga\\Music\\Darbalaukis\\Agentas\\Stardew Valley\\Board game parts\\Villager Cards\\model-benchmark\\gpt-5.4-mini-low\\villagers-960.webp",
+    "name": "VILLAGERS",
+    "description": "",
+    "needs_review": true,
+    "review_reason": "The image shows a VILLAGERS component/box panel, not a clearly identifiable individual villager card; no villager name or complete printed description is visible.",
+    "dimensions": [
+      960,
+      1325
+    ],
+    "format": "WEBP",
+    "byte_size": 1898328,
+    "crop": "perspective quadrilateral original px: [[841,245],[3214,240],[3237,1945],[874,1964]]; external black photography background removed",
+    "rotation": "90 degrees clockwise to upright vertical"
+  },
+  {
+    "source": "C:\\Users\\Joga\\Music\\Darbalaukis\\Agentas\\Stardew Valley\\Board game parts\\Villager Cards\\20260728_095027.jpg",
+    "output": "C:\\Users\\Joga\\Music\\Darbalaukis\\Agentas\\Stardew Valley\\Board game parts\\Villager Cards\\model-benchmark\\gpt-5.4-mini-low\\villagers-480.webp",
+    "name": "VILLAGERS",
+    "description": "",
+    "needs_review": true,
+    "review_reason": "The image shows a VILLAGERS component/box panel, not a clearly identifiable individual villager card; no villager name or complete printed description is visible.",
+    "dimensions": [
+      480,
+      662
+    ],
+    "format": "WEBP",
+    "byte_size": 439518,
+    "crop": "perspective quadrilateral original px: [[841,245],[3214,240],[3237,1945],[874,1964]]; external black photography background removed",
+    "rotation": "90 degrees clockwise to upright vertical"
+  }
+]

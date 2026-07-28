@@ -1,0 +1,129 @@
+{
+  "processing_settings_version": "card-straight-edge-homography-soft-roundrect-v2",
+  "source_relative_path": "References/20260728_103133.jpg",
+  "source_sha256": "ce5bc12caeb46c17162733111f3f7e25bc9e71b8815030356aa2f213d1ed07be",
+  "source_dimensions": [
+    4624,
+    2084
+  ],
+  "exif_orientation": 6,
+  "coordinate_space": "exif-transposed-2084x4624",
+  "edge_detection": {
+    "signal": "Gaussian(sigma=2) of R-B, persistent crossing",
+    "threshold": 10,
+    "straight_segment_sampling": "middle spans only; corner arcs excluded",
+    "lines": {
+      "left": {
+        "slope": 0.007987867854230586,
+        "intercept": 189.61824910326604,
+        "inliers": 193,
+        "samples": 225,
+        "residual_std_px": 2.2349015386537627
+      },
+      "right": {
+        "slope": -0.005235461441214324,
+        "intercept": 1917.5837635201583,
+        "inliers": 225,
+        "samples": 225,
+        "residual_std_px": 1.6742062996476004
+      },
+      "top": {
+        "slope": -0.0023069914218412204,
+        "intercept": 747.6997796939121,
+        "inliers": 150,
+        "samples": 150,
+        "residual_std_px": 0.9962523827919954
+      },
+      "bottom": {
+        "slope": -0.004991999644428757,
+        "intercept": 3120.7882982947376,
+        "inliers": 150,
+        "samples": 150,
+        "residual_std_px": 0.9175771767073342
+      }
+    }
+  },
+  "corners_tl_tr_br_bl": [
+    [
+      195.58717346191406,
+      747.24853515625
+    ],
+    [
+      1913.6923828125,
+      743.284912109375
+    ],
+    [
+      1901.294677734375,
+      3111.297119140625
+    ],
+    [
+      214.5381317138672,
+      3119.71728515625
+    ]
+  ],
+  "orientation": "portrait-upright",
+  "perspective_transform": [
+    [
+      0.9972240034565157,
+      -0.008149311510412618,
+      -165.09707370297977
+    ],
+    [
+      0.002251020711192824,
+      0.9874494293759343,
+      -714.4528210675819
+    ],
+    [
+      -1.1425824399319018e-06,
+      -7.64177141034836e-06,
+      1.0
+    ]
+  ],
+  "safety_margin_px": 24,
+  "canonical_aspect_ratio": 0.7193028319375427,
+  "raw_detected_aspect_ratio": 0.7182413935661316,
+  "aspect_deviation_percent": -0.14756488147724678,
+  "ratio_reanalysis": null,
+  "output_dimensions": [
+    1728,
+    2402
+  ],
+  "stable_output_id": "villager-pierre",
+  "output_relative_path": "Prepared/villager-pierre.png",
+  "output_sha256": "9de9bdbc3f4abe4998489207b56ff20b14de9cf66cc1473aa3cc1857f7305149",
+  "alpha_settings": {
+    "method": "analytic canonical rounded-rectangle silhouette, separate from homography",
+    "radius_px": 111.0,
+    "supersampling": 4,
+    "soft_coverage": true
+  },
+  "validation": {
+    "decode": true,
+    "rgba": true,
+    "dimensions": true,
+    "orientation": true,
+    "geometry": {
+      "adjacent_angles_deg": [
+        90.0,
+        90.0,
+        90.0,
+        90.0
+      ],
+      "max_right_angle_error_deg": 0.0,
+      "opposite_parallel_error_deg": [
+        0.0,
+        0.0
+      ],
+      "max_axis_error_deg": 0.0
+    },
+    "opaque_background_outside_silhouette": false,
+    "numeric_status": "pass",
+    "visual_status": "pass-contact-sheet-reviewed",
+    "visual_checks": {
+      "complete_edges_and_corners": true,
+      "photography_background_removed": true,
+      "upright": true,
+      "transparency_outside_physical_boundary_only": true
+    }
+  }
+}

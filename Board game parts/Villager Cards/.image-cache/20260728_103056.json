@@ -1,0 +1,129 @@
+{
+  "processing_settings_version": "card-straight-edge-homography-soft-roundrect-v2",
+  "source_relative_path": "References/20260728_103056.jpg",
+  "source_sha256": "35ced2fe112b598a6e3df90bad758c03e6ff6fe362249b9c20f1cbebbe0619bb",
+  "source_dimensions": [
+    4624,
+    2084
+  ],
+  "exif_orientation": 6,
+  "coordinate_space": "exif-transposed-2084x4624",
+  "edge_detection": {
+    "signal": "Gaussian(sigma=2) of R-B, persistent crossing",
+    "threshold": 10,
+    "straight_segment_sampling": "middle spans only; corner arcs excluded",
+    "lines": {
+      "left": {
+        "slope": 0.005437701294709849,
+        "intercept": 103.95643858655345,
+        "inliers": 188,
+        "samples": 225,
+        "residual_std_px": 1.6707766957353358
+      },
+      "right": {
+        "slope": -0.007649731352718383,
+        "intercept": 1844.0152661012785,
+        "inliers": 225,
+        "samples": 225,
+        "residual_std_px": 1.0715311284697027
+      },
+      "top": {
+        "slope": 0.001835192675229928,
+        "intercept": 736.7603884617092,
+        "inliers": 150,
+        "samples": 150,
+        "residual_std_px": 0.5658027662934795
+      },
+      "bottom": {
+        "slope": -0.0006889195075329605,
+        "intercept": 3122.880609804879,
+        "inliers": 150,
+        "samples": 150,
+        "residual_std_px": 0.7815258498884589
+      }
+    }
+  },
+  "corners_tl_tr_br_bl": [
+    [
+      107.96379852294922,
+      736.95849609375
+    ],
+    [
+      1838.3533935546875,
+      740.1340942382812
+    ],
+    [
+      1820.1356201171875,
+      3121.626708984375
+    ],
+    [
+      120.9372787475586,
+      3122.79736328125
+    ]
+  ],
+  "orientation": "portrait-upright",
+  "perspective_transform": [
+    [
+      0.9905702144903547,
+      -0.0055669161185218086,
+      -78.97874132903313
+    ],
+    [
+      -0.0018282168016019707,
+      0.9824414063063477,
+      -699.9567644608783
+    ],
+    [
+      -1.0381931162782216e-06,
+      -7.514800458982938e-06,
+      1.0
+    ]
+  ],
+  "safety_margin_px": 24,
+  "canonical_aspect_ratio": 0.7193028319375427,
+  "raw_detected_aspect_ratio": 0.7193784713745117,
+  "aspect_deviation_percent": 0.010515659554011236,
+  "ratio_reanalysis": null,
+  "output_dimensions": [
+    1728,
+    2402
+  ],
+  "stable_output_id": "villager-abigail",
+  "output_relative_path": "Prepared/villager-abigail.png",
+  "output_sha256": "4fcbd2916e7f3372069ef9f136eb643985ed21538e84ea4f4c6937a1d9f451a0",
+  "alpha_settings": {
+    "method": "analytic canonical rounded-rectangle silhouette, separate from homography",
+    "radius_px": 111.0,
+    "supersampling": 4,
+    "soft_coverage": true
+  },
+  "validation": {
+    "decode": true,
+    "rgba": true,
+    "dimensions": true,
+    "orientation": true,
+    "geometry": {
+      "adjacent_angles_deg": [
+        90.0,
+        90.0,
+        90.0,
+        90.0
+      ],
+      "max_right_angle_error_deg": 0.0,
+      "opposite_parallel_error_deg": [
+        0.0,
+        0.0
+      ],
+      "max_axis_error_deg": 0.0
+    },
+    "opaque_background_outside_silhouette": false,
+    "numeric_status": "pass",
+    "visual_status": "pass-contact-sheet-reviewed",
+    "visual_checks": {
+      "complete_edges_and_corners": true,
+      "photography_background_removed": true,
+      "upright": true,
+      "transparency_outside_physical_boundary_only": true
+    }
+  }
+}

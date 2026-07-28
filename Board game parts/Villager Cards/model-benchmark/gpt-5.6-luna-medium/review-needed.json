@@ -1,0 +1,10 @@
+[
+  {
+    "source": "Stardew Valley/Board game parts/Villager Cards/20260728_095027.jpg",
+    "output": "villagers.webp",
+    "name": "VILLAGERS",
+    "description": "",
+    "review_reason": "Source is the VILLAGERS card back; no villager name or description is printed.",
+    "text_crop": "Stardew Valley/Board game parts/Villager Cards/model-benchmark/gpt-5.6-luna-medium\\review-text-villagers.jpg"
+  }
+]

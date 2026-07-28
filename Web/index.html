@@ -7,7 +7,7 @@
   <title>Stardew Valley Board Game</title>
   <link rel="stylesheet" href="dice-roller.css?v=7">
   <link rel="stylesheet" href="styles.css?v=124">
-  <script src="dice-roller.js?v=11" defer></script>
+  <script src="dice-roller.js?v=13" defer></script>
   <script src="app.js?v=89" defer></script>
 </head>
 <body>
@@ -92,6 +92,12 @@
 
     <section id="game-board" class="game-board" aria-label="Stardew Valley game board" hidden>
       <button id="board-stage-back" class="stage-back-button board-stage-back" type="button">Back</button>
+      <button id="villager-card" class="villager-card" type="button" aria-label="View Villagers card">
+        <picture>
+          <source srcset="assets/villagers-480.webp 480w, assets/villagers-960.webp 960w, assets/villagers.webp 1729w" sizes="11.3vmin">
+          <img src="assets/villagers.webp" alt="Villagers card" draggable="false">
+        </picture>
+      </button>
       <div class="board-frame">
         <div id="board-canvas" class="board-canvas">
           <div id="board-surface" class="board-surface">
@@ -228,12 +234,12 @@
                   <i class="stardew-dice__corner" data-corner="1,-1,1"></i>
                   <i class="stardew-dice__corner" data-corner="1,1,-1"></i>
                   <i class="stardew-dice__corner" data-corner="1,1,1"></i>
-                  <div class="stardew-dice__face stardew-dice__face--front"><img src="assets/dice-stardrop.png?v=3" alt=""></div>
-                  <div class="stardew-dice__face stardew-dice__face--back"><img src="assets/dice-heart.png?v=3" alt=""></div>
-                  <div class="stardew-dice__face stardew-dice__face--right"><img src="assets/dice-heart.png?v=3" alt=""></div>
-                  <div class="stardew-dice__face stardew-dice__face--left"><img src="assets/dice-heart.png?v=3" alt=""></div>
-                  <div class="stardew-dice__face stardew-dice__face--top"><img src="assets/dice-junimo.png?v=3" alt=""></div>
-                <div class="stardew-dice__face stardew-dice__face--bottom"><img src="assets/dice-junimo.png?v=3" alt=""></div>
+                  <div class="stardew-dice__face stardew-dice__face--front"><img src="assets/dice-stardrop.png?v=4" alt=""></div>
+                  <div class="stardew-dice__face stardew-dice__face--back"><img src="assets/dice-heart.png?v=4" alt=""></div>
+                  <div class="stardew-dice__face stardew-dice__face--right"><img src="assets/dice-heart.png?v=4" alt=""></div>
+                  <div class="stardew-dice__face stardew-dice__face--left"><img src="assets/dice-heart.png?v=4" alt=""></div>
+                  <div class="stardew-dice__face stardew-dice__face--top"><img src="assets/dice-junimo.png?v=4" alt=""></div>
+                <div class="stardew-dice__face stardew-dice__face--bottom"><img src="assets/dice-junimo.png?v=4" alt=""></div>
               </div>
                 <div class="stardew-dice__shadow"></div>
               </div>

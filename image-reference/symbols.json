@@ -1,0 +1,123 @@
+{
+  "schema_version": 2,
+  "dictionary_scope": "Bendras simbolių žodynas visoms Stardew Valley: The Board Game kortoms, žetonams, plytelėms, kauliukams ir lentoms.",
+  "symbols": {
+    "birthday-bonus-heart": {
+      "category": "villager",
+      "observation": "Pilkas pliuso ženklas, po jo viena raudona širdis.",
+      "meaning": "Per gyventojo gimtadienio sezoną gaunama 1 papildoma širdis.",
+      "contexts": ["villager-card", "birthday"],
+      "reference_image": "symbol-images/birthday-bonus-heart.png",
+      "reference_component": "Board game parts/Villager Cards/Prepared/villager-penny.png",
+      "visual_variants": [],
+      "confidence": 1.0,
+      "reference": "Stardew Valley/stardew rules.pdf, PDF p. 14"
+    },
+    "gift-hated": {
+      "category": "villager",
+      "observation": "Baltas kalbos debesėlis su juodu sujauktu ir perbrauktu ženklu.",
+      "meaning": "Hated: po ženklu parodytų išteklių šiam gyventojui dovanoti negalima.",
+      "contexts": ["villager-card", "gift-preference"],
+      "reference_image": "symbol-images/gift-hated.png",
+      "reference_component": "Board game parts/Villager Cards/Prepared/villager-penny.png",
+      "visual_variants": [],
+      "confidence": 1.0,
+      "reference": "Stardew Valley/stardew rules.pdf, PDF p. 14"
+    },
+    "gift-loved": {
+      "category": "villager",
+      "observation": "Baltas kalbos debesėlis su dviem persidengiančiomis raudonomis širdimis.",
+      "meaning": "Loved: po ženklu parodyta dovanos rūšis duoda 2 širdis.",
+      "contexts": ["villager-card", "gift-preference"],
+      "reference_image": "symbol-images/gift-loved.png",
+      "reference_component": "Board game parts/Villager Cards/Prepared/villager-penny.png",
+      "visual_variants": [],
+      "confidence": 1.0,
+      "reference": "Stardew Valley/stardew rules.pdf, PDF p. 14"
+    },
+    "gift-trigger": {
+      "category": "effect",
+      "observation": "Raudonai ir baltai dryžuota dovanos dėžutė su geltonu kaspinu.",
+      "meaning": "Gift simbolis; Villager kortoje aktyvuoja pasirinkto draugo Gift Ability, o kituose taikomuose komponentuose aktyvuoja jų Gift efektą.",
+      "contexts": ["villager-card", "profession-card", "season-card", "non-villager-card"],
+      "reference_image": "symbol-images/gift-trigger.png",
+      "reference_component": "Board game parts/Villager Cards/Prepared/villager-penny.png",
+      "visual_variants": [],
+      "confidence": 1.0,
+      "reference": "Stardew Valley/Rules Reference/Complete Rules.md, §4 and §14"
+    },
+    "resource-animal-product": {
+      "category": "resource-type",
+      "observation": "Baltas pieno indelis raudonu dangteliu ir raudona raide M.",
+      "meaning": "Animal Products išteklių rūšis.",
+      "contexts": ["villager-card", "bundle-card", "goal-card", "resource-requirement", "tile"],
+      "reference_image": "symbol-images/resource-animal-product.png",
+      "reference_component": "Board game parts/Villager Cards/Prepared/villager-clint.png",
+      "visual_variants": [],
+      "confidence": 0.98,
+      "reference": "Stardew Valley/Rules Reference/Complete Rules.md, §13 Resource handling"
+    },
+    "resource-artifact": {
+      "category": "resource-type",
+      "observation": "Oranžinis gėlę arba krumpliaratį primenantis ženklas su šviesiu centru.",
+      "meaning": "Artifacts išteklių rūšis.",
+      "contexts": ["villager-card", "bundle-card", "goal-card", "mine", "museum", "forageable", "tile"],
+      "reference_image": "symbol-images/resource-artifact.png",
+      "reference_component": "Board game parts/Villager Cards/Prepared/villager-penny.png",
+      "visual_variants": [],
+      "confidence": 1.0,
+      "reference": "Stardew Valley/stardew rules.pdf, PDF p. 14 (Penny pavyzdys)"
+    },
+    "resource-fish": {
+      "category": "resource-type",
+      "observation": "Žalia žuvis, nukreipta į viršutinį dešinį kampą.",
+      "meaning": "Fish išteklių rūšis. Kontekstas nustato, ar tai dovanos rūšis, Bundle reikalavimas, Goal reikalavimas ar žvejybos objektas.",
+      "contexts": ["villager-card", "bundle-card", "goal-card", "fishing-tile", "resource-requirement"],
+      "reference_image": "symbol-images/resource-fish.png",
+      "reference_component": "Board game parts/Villager Cards/Prepared/villager-elliott.png",
+      "visual_variants": [],
+      "confidence": 1.0,
+      "reference": "Stardew Valley/Rules Reference/Complete Rules.md, §11 and §13 Resource handling"
+    },
+    "resource-forageable": {
+      "category": "resource-type",
+      "observation": "Raudona baltai taškuota kepurėlė ir baltas grybo kotas.",
+      "meaning": "Forageables išteklių rūšis; Tree plytelės šiai rūšiai nepriklauso.",
+      "contexts": ["villager-card", "bundle-card", "goal-card", "forageable-tile", "resource-requirement"],
+      "reference_image": "symbol-images/resource-forageable.png",
+      "reference_component": "Board game parts/Villager Cards/Prepared/villager-caroline.png",
+      "visual_variants": [],
+      "confidence": 0.99,
+      "reference": "Stardew Valley/Rules Reference/Complete Rules.md, §6 and §13 Resource handling"
+    },
+    "resource-mineral": {
+      "category": "resource-type",
+      "observation": "Trijų žalių kristalų telkinys.",
+      "meaning": "Minerals išteklių rūšis.",
+      "contexts": ["villager-card", "bundle-card", "goal-card", "mine", "museum", "forageable", "tile"],
+      "reference_image": "symbol-images/resource-mineral.png",
+      "reference_component": "Board game parts/Villager Cards/Prepared/villager-penny.png",
+      "visual_variants": [],
+      "confidence": 1.0,
+      "reference": "Stardew Valley/stardew rules.pdf, PDF p. 14 (Penny pavyzdys)"
+    },
+    "season-winter": {
+      "category": "season",
+      "observation": "Mėlyna šešiakampė snaigė.",
+      "meaning": "Winter sezonas.",
+      "contexts": ["villager-card", "season-card", "forageable-tile", "tree-tile", "crop-tile"],
+      "reference_image": "symbol-images/season-winter.png",
+      "reference_component": "Board game parts/Villager Cards/Prepared/villager-caroline.png",
+      "visual_variants": [],
+      "confidence": 1.0,
+      "reference": "Stardew Valley/stardew rules.pdf, PDF p. 14"
+    }
+  },
+  "recognition_policy": {
+    "shared_meaning": "Tas pats simbolio ID naudojamas visuose komponentuose, jei vizualas ir bazinė taisyklinė reikšmė sutampa.",
+    "context_rule": "Konkreti funkcija nustatoma iš komponento tipo ir aplinkinio teksto; atskiras simbolio ID nekuriamas vien dėl kitokio konteksto.",
+    "variant_rule": "Reikšmės nekeičiantis spalvos, dydžio ar spaudos variantas registruojamas visual_variants; reikšmę keičiantis ženklas gauna naują ID.",
+    "verification": "Automatinis atitikmuo priimamas tik esant patikimam vizualiniam sutapimui. Neatpažintas ar dviprasmis simbolis žymimas review-needed ir nėra spėjamas."
+  },
+  "notes": "Žodyne laikomi tik patikimai patvirtinti simboliai. Nauji simboliai pirmiausia tikrinami pagal kortelę ar plytelę, originalų taisyklių PDF ir Rules Reference."
+}

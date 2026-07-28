@@ -1,0 +1,129 @@
+{
+  "processing_settings_version": "card-straight-edge-homography-soft-roundrect-v2",
+  "source_relative_path": "References/20260728_103221.jpg",
+  "source_sha256": "7b7fd6931db6e3bce9085dfaf4e586ab5ab82a49aefb6e0a275b72e240846047",
+  "source_dimensions": [
+    4624,
+    2084
+  ],
+  "exif_orientation": 6,
+  "coordinate_space": "exif-transposed-2084x4624",
+  "edge_detection": {
+    "signal": "Gaussian(sigma=2) of R-B, persistent crossing",
+    "threshold": 10,
+    "straight_segment_sampling": "middle spans only; corner arcs excluded",
+    "lines": {
+      "left": {
+        "slope": 0.005750154352212868,
+        "intercept": 209.4814732104086,
+        "inliers": 191,
+        "samples": 225,
+        "residual_std_px": 2.104738032416012
+      },
+      "right": {
+        "slope": -0.00535422846131278,
+        "intercept": 1952.0504549899451,
+        "inliers": 224,
+        "samples": 225,
+        "residual_std_px": 2.0253293861373916
+      },
+      "top": {
+        "slope": -0.00013333925952234326,
+        "intercept": 748.4061395321268,
+        "inliers": 150,
+        "samples": 150,
+        "residual_std_px": 0.7257792093581416
+      },
+      "bottom": {
+        "slope": -0.0022914351748958644,
+        "intercept": 3140.750174526274,
+        "inliers": 150,
+        "samples": 150,
+        "residual_std_px": 0.9229134339322621
+      }
+    }
+  },
+  "corners_tl_tr_br_bl": [
+    [
+      213.78475952148438,
+      748.3776245117188
+    ],
+    [
+      1948.044677734375,
+      748.1463623046875
+    ],
+    [
+      1935.2579345703125,
+      3136.315673828125
+    ],
+    [
+      227.53826904296875,
+      3140.228759765625
+    ]
+  ],
+  "orientation": "portrait-upright",
+  "perspective_transform": [
+    [
+      0.9893054823352785,
+      -0.005841566652408651,
+      -183.245688355519
+    ],
+    [
+      0.00010958896974100872,
+      0.9833989393067912,
+      -712.0961420932446
+    ],
+    [
+      -8.986203334035767e-07,
+      -6.366038991077842e-06,
+      1.0
+    ]
+  ],
+  "safety_margin_px": 24,
+  "canonical_aspect_ratio": 0.7193028319375427,
+  "raw_detected_aspect_ratio": 0.7200661897659302,
+  "aspect_deviation_percent": 0.10612467996702346,
+  "ratio_reanalysis": null,
+  "output_dimensions": [
+    1728,
+    2402
+  ],
+  "stable_output_id": "villager-jodi",
+  "output_relative_path": "Prepared/villager-jodi.png",
+  "output_sha256": "468d59d72b5ca16ed06565821069701241a94380f363555cd310a0c5053e75c9",
+  "alpha_settings": {
+    "method": "analytic canonical rounded-rectangle silhouette, separate from homography",
+    "radius_px": 111.0,
+    "supersampling": 4,
+    "soft_coverage": true
+  },
+  "validation": {
+    "decode": true,
+    "rgba": true,
+    "dimensions": true,
+    "orientation": true,
+    "geometry": {
+      "adjacent_angles_deg": [
+        90.0,
+        90.0,
+        90.0,
+        90.0
+      ],
+      "max_right_angle_error_deg": 0.0,
+      "opposite_parallel_error_deg": [
+        0.0,
+        0.0
+      ],
+      "max_axis_error_deg": 0.0
+    },
+    "opaque_background_outside_silhouette": false,
+    "numeric_status": "pass",
+    "visual_status": "pass-contact-sheet-reviewed",
+    "visual_checks": {
+      "complete_edges_and_corners": true,
+      "photography_background_removed": true,
+      "upright": true,
+      "transparency_outside_physical_boundary_only": true
+    }
+  }
+}

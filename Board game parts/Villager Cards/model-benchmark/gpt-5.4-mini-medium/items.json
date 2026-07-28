@@ -1,0 +1,41 @@
+[
+  {
+    "source": "C:/Users/Joga/Music/Darbalaukis/Agentas/Stardew Valley/Board game parts/Villager Cards/20260728_095027.jpg",
+    "output": "C:/Users/Joga/Music/Darbalaukis/Agentas/Stardew Valley/Board game parts/Villager Cards/model-benchmark/gpt-5.4-mini-medium\\villagers.webp",
+    "name": "VILLAGERS",
+    "description": "No printed description.",
+    "needs_review": true,
+    "review_reason": "Villagers card back; no item-specific printed description is present.",
+    "dimensions": "1080x3795",
+    "format": "WebP",
+    "bytes": 2074518,
+    "crop": "quadrilateral card boundary; rounded-corner alpha mask",
+    "rotation": "90\u00b0 counterclockwise"
+  },
+  {
+    "source": "C:/Users/Joga/Music/Darbalaukis/Agentas/Stardew Valley/Board game parts/Villager Cards/20260728_095027.jpg",
+    "output": "C:/Users/Joga/Music/Darbalaukis/Agentas/Stardew Valley/Board game parts/Villager Cards/model-benchmark/gpt-5.4-mini-medium\\villagers-480.webp",
+    "name": "VILLAGERS",
+    "description": "No printed description.",
+    "needs_review": true,
+    "review_reason": "Villagers card back; no item-specific printed description is present.",
+    "dimensions": "480x1687",
+    "format": "WebP",
+    "bytes": 446558,
+    "crop": "quadrilateral card boundary; rounded-corner alpha mask",
+    "rotation": "90\u00b0 counterclockwise"
+  },
+  {
+    "source": "C:/Users/Joga/Music/Darbalaukis/Agentas/Stardew Valley/Board game parts/Villager Cards/20260728_095027.jpg",
+    "output": "C:/Users/Joga/Music/Darbalaukis/Agentas/Stardew Valley/Board game parts/Villager Cards/model-benchmark/gpt-5.4-mini-medium\\villagers-960.webp",
+    "name": "VILLAGERS",
+    "description": "No printed description.",
+    "needs_review": true,
+    "review_reason": "Villagers card back; no item-specific printed description is present.",
+    "dimensions": "960x3373",
+    "format": "WebP",
+    "bytes": 1575072,
+    "crop": "quadrilateral card boundary; rounded-corner alpha mask",
+    "rotation": "90\u00b0 counterclockwise"
+  }
+]
